@@ -1,7 +1,7 @@
 {
-    "name": "laravel-enso/statistics-manager",
+    "name": "laravel-enso/statisticsmanager",
     "description": "Statistics Manager for Laravel Enso",
-    "type": "middleware",
+    "type": "plugin",
     "license": "MIT",
     "authors": [
         {
