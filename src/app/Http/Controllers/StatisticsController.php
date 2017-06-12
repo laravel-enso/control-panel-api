@@ -8,11 +8,11 @@ use LaravelEnso\Core\app\Models\Login;
 
 class StatisticsController extends Controller
 {
-
     /** Valid calls are:
      * (api token) http://enso.dev/api/statistics?api_token=abc&startDate=2017-01-01&endDate=2017-12-01
      * (passport) http://enso.dev/api/statistics?startDate=2017-01-01&endDate=2017-12-01
-     * For passport you need to pass the bearer in the header
+     * For passport you need to pass the bearer in the header.
+     *
      * @return array
      */
     public function getStatistics()
