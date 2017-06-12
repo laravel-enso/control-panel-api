@@ -8,7 +8,6 @@ use LaravelEnso\Core\app\Models\Login;
 
 class StatisticsController extends Controller
 {
-
     /** A valid call is http://enso.dev/api/statistics?api_token=abc&startDate=2017-01-01&endDate=2017-12-01
      * @return array
      */
