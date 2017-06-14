@@ -19,6 +19,9 @@ class StatisticsManagerServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+
+        //for passport oauth client_credentials type of authorization
+        $this->app['router']->aliasMiddleware('passport', \Laravel\Passport\Http\Middleware\CheckClientCredentials::class);
     }
 
     /**
