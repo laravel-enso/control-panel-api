@@ -8,4 +8,4 @@ Route::group([
     'as' => 'api.v1.'],
     function () {
         Route::get('statistics', 'StatisticsController@getStatistics')->name('statistics');
-});
+    });
