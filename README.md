@@ -14,11 +14,14 @@ Follow the standard steps for completing the Passport package install:
 * set `'driver' => 'passport',` inside `config/auth.php` for the api guard.
 * publish the laravel passport FE components: `php artisan vendor:publish --tag=passport-components`
 * register the components in `resources/assets/js/app.js`
+    - Vue.component('passport-clients', require('./components/passport/Clients.vue'));
+    - Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
+    - Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
 * compile the js assets `npm run dev`, `gulp`, etc.
 * include the component `<passport-clients></passport-clients>` where desired.
 
 Next steps are required for this package:
 
-* Add `'LaravelEnso\StatisticsManager\StatisticsManagerServiceProvider::class'` to your providers list in `config/app.php`.
+* Add `LaravelEnso\StatisticsManager\StatisticsManagerServiceProvider::class` to your providers list in `config/app.php`.
 * Run the migrations. 
-* Use the FE to define an OAuth client, and take note of the ID and the secret.
+* Use the FE to define an OAuth client, and take note of the ID and the secret (you'll need these in the client that consumes the services)
