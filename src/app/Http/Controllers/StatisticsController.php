@@ -13,7 +13,6 @@ use LaravelEnso\Helpers\Classes\Object;
 
 class StatisticsController extends Controller
 {
-
     /** Valid calls are:
      * (api token) http://enso.dev/api/statistics?api_token=abc&startDate=2017-01-01&endDate=2017-12-01
      * (passport) http://enso.dev/api/statistics?startDate=2017-01-01&endDate=2017-12-01
@@ -51,8 +50,8 @@ class StatisticsController extends Controller
         return json_encode($response);
     }
 
-    private function getLoginsCount($startDate, $endDate) {
-
+    private function getLoginsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'logins';
         $tmp->value = Login::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
@@ -60,8 +59,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getActionsCount($startDate, $endDate) {
-
+    private function getActionsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'actions';
         $tmp->value = ActionLog::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
@@ -69,8 +68,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getFailedJobsCount($startDate, $endDate) {
-
+    private function getFailedJobsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'failed jobs';
         $tmp->value = DB::table('failed_jobs')
@@ -82,8 +81,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getActiveSessionsCount() {
-
+    private function getActiveSessionsCount()
+    {
         $tmp = new Object();
         $tmp->key = 'active sessions';
         $tmp->value = DB::table('sessions')
@@ -93,8 +92,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getServerTime() {
-
+    private function getServerTime()
+    {
         $tmp = new Object();
         $tmp->key = 'server time';
         $tmp->value = Carbon::now()->toTimeString();
@@ -102,8 +101,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getLogFileSize($filename='laravel.log') {
-
+    private function getLogFileSize($filename = 'laravel.log')
+    {
         $file = storage_path('logs/'.$filename);
 
         $tmp = new Object();
