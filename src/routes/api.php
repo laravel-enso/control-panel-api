@@ -8,4 +8,5 @@ Route::group([
     'as'         => 'api.v1.', ],
     function () {
         Route::get('statistics', 'StatisticsController@getStatistics')->name('statistics');
+        Route::delete('clearLaravelLog', 'StatisticsController@clearLaravelLog')->name('clearLaravelLog');
     });

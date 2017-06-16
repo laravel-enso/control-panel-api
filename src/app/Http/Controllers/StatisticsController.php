@@ -7,12 +7,20 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Jenssegers\Date\Date;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\Helpers\Classes\Object;
+use LaravelEnso\LogManager\app\Http\Controllers\LogManagerController;
 
 class StatisticsController extends Controller
 {
+
+    public function clearLaravelLog() {
+
+        $logManagerController = new LogManagerController();
+        return $logManagerController->destroy('laravel.log');
+    }
 
     /** Valid calls are:
      * (api token) http://enso.dev/api/statistics?api_token=abc&startDate=2017-01-01&endDate=2017-12-01
@@ -25,30 +33,50 @@ class StatisticsController extends Controller
      */
     public function getStatistics(Request $request)
     {
-        $startDate = \Date::parse($request->get('startDate'))->format('Y-m-d');
-        $endDate = \Date::parse($request->get('endDate'))->format('Y-m-d');
+        $startDate = Date::parse($request->get('startDate'))->format('Y-m-d');
+        $endDate = Date::parse($request->get('endDate'))->format('Y-m-d');
+        $dataTypes = $request->get('dataTypes');
+
+        $response = $this->gatherStatistics($startDate, $endDate, $dataTypes);
+
+        return json_encode($response);
+    }
+
+    private function gatherStatistics($startDate, $endDate, $dataTypes) {
 
         $response = [];
 
-        $logins = $this->getLoginsCount($startDate, $endDate);
-        $response[] = $logins;
+        if(in_array('logins',$dataTypes)) {
+            $logins = $this->getLoginsCount($startDate, $endDate);
+            $response[] = $logins;
+        }
 
-        $actions = $this->getActionsCount($startDate, $endDate);
-        $response[] = $actions;
+        if(in_array('actions',$dataTypes)) {
+            $actions = $this->getActionsCount($startDate, $endDate);
+            $response[] = $actions;
+        }
 
-        $failedJobs = $this->getFailedJobsCount($startDate, $endDate);
-        $response[] = $failedJobs;
+        if(in_array('failedJobs',$dataTypes)) {
+            $failedJobs = $this->getFailedJobsCount($startDate, $endDate);
+            $response[] = $failedJobs;
+        }
 
-        $activeSessions = $this->getActiveSessionsCount();
-        $response[] = $activeSessions;
+        if(in_array('activeSessions',$dataTypes)) {
+            $activeSessions = $this->getActiveSessionsCount();
+            $response[] = $activeSessions;
+        }
 
-        $serverTime = $this->getServerTime();
-        $response[] = $serverTime;
+        if(in_array('serverTime',$dataTypes)) {
+            $serverTime = $this->getServerTime();
+            $response[] = $serverTime;
+        }
 
-        $logFileSize = $this->getLogFileSize();
-        $response[] = $logFileSize;
+        if(in_array('logSize',$dataTypes)) {
+            $logFileSize = $this->getLogFileSize();
+            $response[] = $logFileSize;
+        }
 
-        return json_encode($response);
+        return $response;
     }
 
     private function getLoginsCount($startDate, $endDate) {
@@ -72,7 +100,7 @@ class StatisticsController extends Controller
     private function getFailedJobsCount($startDate, $endDate) {
 
         $tmp = new Object();
-        $tmp->key = 'failed jobs';
+        $tmp->key = 'failedJobs';
         $tmp->value = DB::table('failed_jobs')
             ->select(DB::raw('*'))
             ->where('failed_at', '>', $startDate)
@@ -85,7 +113,7 @@ class StatisticsController extends Controller
     private function getActiveSessionsCount() {
 
         $tmp = new Object();
-        $tmp->key = 'active sessions';
+        $tmp->key = 'activeSessions';
         $tmp->value = DB::table('sessions')
             ->select(DB::raw('*'))
             ->count();
@@ -96,7 +124,7 @@ class StatisticsController extends Controller
     private function getServerTime() {
 
         $tmp = new Object();
-        $tmp->key = 'server time';
+        $tmp->key = 'serverTime';
         $tmp->value = Carbon::now()->toTimeString();
 
         return $tmp;
@@ -107,9 +135,11 @@ class StatisticsController extends Controller
         $file = storage_path('logs/'.$filename);
 
         $tmp = new Object();
-        $tmp->key = 'log size';
+        $tmp->key = 'logSize';
         $tmp->value = round((int) File::size($file) / 1048576, 2).' MB';
 
         return $tmp;
     }
+
+
 }
