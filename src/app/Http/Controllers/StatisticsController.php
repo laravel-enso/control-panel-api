@@ -42,8 +42,8 @@ class StatisticsController extends Controller
         return json_encode($response);
     }
 
-    private function gatherStatistics($startDate, $endDate, $dataTypes) {
-
+    private function gatherStatistics($startDate, $endDate, $dataTypes)
+    {
         $response = [];
 
         if(in_array('logins',$dataTypes)) {
@@ -79,8 +79,8 @@ class StatisticsController extends Controller
         return $response;
     }
 
-    private function getLoginsCount($startDate, $endDate) {
-
+    private function getLoginsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'logins';
         $tmp->value = Login::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
@@ -88,8 +88,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getActionsCount($startDate, $endDate) {
-
+    private function getActionsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'actions';
         $tmp->value = ActionLog::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
@@ -97,8 +97,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getFailedJobsCount($startDate, $endDate) {
-
+    private function getFailedJobsCount($startDate, $endDate)
+    {
         $tmp = new Object();
         $tmp->key = 'failedJobs';
         $tmp->value = DB::table('failed_jobs')
@@ -110,8 +110,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getActiveSessionsCount() {
-
+    private function getActiveSessionsCount()
+    {
         $tmp = new Object();
         $tmp->key = 'activeSessions';
         $tmp->value = DB::table('sessions')
@@ -121,8 +121,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getServerTime() {
-
+    private function getServerTime()
+    {
         $tmp = new Object();
         $tmp->key = 'serverTime';
         $tmp->value = Carbon::now()->toTimeString();
@@ -130,8 +130,8 @@ class StatisticsController extends Controller
         return $tmp;
     }
 
-    private function getLogFileSize($filename='laravel.log') {
-
+    private function getLogFileSize($filename = 'laravel.log')
+    {
         $file = storage_path('logs/'.$filename);
 
         $tmp = new Object();
@@ -140,6 +140,4 @@ class StatisticsController extends Controller
 
         return $tmp;
     }
-
-
 }
