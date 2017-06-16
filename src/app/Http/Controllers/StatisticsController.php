@@ -15,10 +15,10 @@ use LaravelEnso\LogManager\app\Http\Controllers\LogManagerController;
 
 class StatisticsController extends Controller
 {
-
-    public function clearLaravelLog() {
-
+    public function clearLaravelLog()
+    {
         $logManagerController = new LogManagerController();
+
         return $logManagerController->destroy('laravel.log');
     }
 
@@ -46,32 +46,32 @@ class StatisticsController extends Controller
     {
         $response = [];
 
-        if(in_array('logins',$dataTypes)) {
+        if (in_array('logins', $dataTypes)) {
             $logins = $this->getLoginsCount($startDate, $endDate);
             $response[] = $logins;
         }
 
-        if(in_array('actions',$dataTypes)) {
+        if (in_array('actions', $dataTypes)) {
             $actions = $this->getActionsCount($startDate, $endDate);
             $response[] = $actions;
         }
 
-        if(in_array('failedJobs',$dataTypes)) {
+        if (in_array('failedJobs', $dataTypes)) {
             $failedJobs = $this->getFailedJobsCount($startDate, $endDate);
             $response[] = $failedJobs;
         }
 
-        if(in_array('activeSessions',$dataTypes)) {
+        if (in_array('activeSessions', $dataTypes)) {
             $activeSessions = $this->getActiveSessionsCount();
             $response[] = $activeSessions;
         }
 
-        if(in_array('serverTime',$dataTypes)) {
+        if (in_array('serverTime', $dataTypes)) {
             $serverTime = $this->getServerTime();
             $response[] = $serverTime;
         }
 
-        if(in_array('logSize',$dataTypes)) {
+        if (in_array('logSize', $dataTypes)) {
             $logFileSize = $this->getLogFileSize();
             $response[] = $logFileSize;
         }
