@@ -16,20 +16,17 @@ use Lcobucci\JWT\Parser;
 
 class StatisticsController extends Controller
 {
-
     public function deleteOauthToken(Request $request)
     {
-
         $token = $request->bearerToken();
         $id = (new Parser())->parse($token)->getHeader('jti');
 
 //        $sql= "DELETE FROM oauth_access_tokens where id='$id';";
 //        DB::connection()->getPdo()->exec($sql);
 
-
         return response('Deleted');
     }
-    
+
     public function clearLaravelLog()
     {
         $logManagerController = new LogManagerController();
