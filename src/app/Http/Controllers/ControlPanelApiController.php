@@ -5,10 +5,12 @@ namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Jenssegers\Date\Date;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
+use LaravelEnso\ControlPanelApi\app\Enums\DataTypesEnum;
 use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\Helpers\Classes\Object;
 use LaravelEnso\LogManager\app\Http\Controllers\LogManagerController;
@@ -16,6 +18,16 @@ use Lcobucci\JWT\Parser;
 
 class ControlPanelApiController extends Controller
 {
+
+    public function setMaintenanceMode()
+    {
+        $exitCode = Artisan::call('down', [ ]);
+
+        \Log::debug("exit code: ".$exitCode);
+
+        return $exitCode;
+    }
+    
     public function deleteOauthToken(Request $request)
     {
         $token = $request->bearerToken();
@@ -58,34 +70,16 @@ class ControlPanelApiController extends Controller
     {
         $response = [];
 
-        if (in_array('logins', $dataTypes)) {
-            $logins = $this->getLoginsCount($startDate, $endDate);
-            $response[] = $logins;
+
+        if(!$this->areDataTypesValid($dataTypes)) {
+            return response('Invalid dataType(s) requested', 400);
         }
 
-        if (in_array('actions', $dataTypes)) {
-            $actions = $this->getActionsCount($startDate, $endDate);
-            $response[] = $actions;
-        }
 
-        if (in_array('failedJobs', $dataTypes)) {
-            $failedJobs = $this->getFailedJobsCount($startDate, $endDate);
-            $response[] = $failedJobs;
-        }
-
-        if (in_array('activeSessions', $dataTypes)) {
-            $activeSessions = $this->getActiveSessionsCount();
-            $response[] = $activeSessions;
-        }
-
-        if (in_array('serverTime', $dataTypes)) {
-            $serverTime = $this->getServerTime();
-            $response[] = $serverTime;
-        }
-
-        if (in_array('logSize', $dataTypes)) {
-            $logFileSize = $this->getLogFileSize();
-            $response[] = $logFileSize;
+        foreach ($dataTypes as $type) {
+            $typeGetter = 'get'.ucfirst($type);
+            $tmp = $this->{$typeGetter}($startDate, $endDate);
+            $response[] = $tmp;
         }
 
         return $response;
@@ -94,7 +88,7 @@ class ControlPanelApiController extends Controller
     private function getLoginsCount($startDate, $endDate)
     {
         $tmp = new Object();
-        $tmp->key = 'logins';
+        $tmp->key = 'loginsCount';
         $tmp->value = Login::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
 
         return $tmp;
@@ -103,7 +97,7 @@ class ControlPanelApiController extends Controller
     private function getActionsCount($startDate, $endDate)
     {
         $tmp = new Object();
-        $tmp->key = 'actions';
+        $tmp->key = 'actionsCount';
         $tmp->value = ActionLog::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
 
         return $tmp;
@@ -112,7 +106,7 @@ class ControlPanelApiController extends Controller
     private function getFailedJobsCount($startDate, $endDate)
     {
         $tmp = new Object();
-        $tmp->key = 'failedJobs';
+        $tmp->key = 'failedJobsCount';
         $tmp->value = DB::table('failed_jobs')
             ->select(DB::raw('*'))
             ->where('failed_at', '>', $startDate)
@@ -125,7 +119,7 @@ class ControlPanelApiController extends Controller
     private function getActiveSessionsCount()
     {
         $tmp = new Object();
-        $tmp->key = 'activeSessions';
+        $tmp->key = 'activeSessionsCount';
         $tmp->value = DB::table('sessions')
             ->select(DB::raw('*'))
             ->count();
@@ -142,14 +136,30 @@ class ControlPanelApiController extends Controller
         return $tmp;
     }
 
-    private function getLogFileSize($filename = 'laravel.log')
+    private function getLogFileSize()
     {
+
+        $filename = 'laravel.log';
+
         $file = storage_path('logs/'.$filename);
 
         $tmp = new Object();
-        $tmp->key = 'logSize';
+        $tmp->key = 'logFileSize';
         $tmp->value = round((int) File::size($file) / 1048576, 2).' MB';
 
         return $tmp;
+    }
+
+    private function areDataTypesValid($dataTypes)
+    {
+
+        $acceptedDataTypes = (new DataTypesEnum())->getKeys();
+        $diffs = array_diff($dataTypes, $acceptedDataTypes);
+
+        if(count($diffs)) {
+            return false;
+        }
+
+        return true;
     }
 }

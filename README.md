@@ -7,7 +7,7 @@ The package depends on the Laravel/Passport official package.
 
 ### Installation
 
-Follow the standard steps for completing the Passport package install:
+Follow the standard steps for completing the [Passport package install](https://laravel.com/docs/5.4/passport#installation):
 * Add `Laravel\Passport\PassportServiceProvider::class,` to your providers list in `config/app.php`.
 * run `php artisan migrate`
 * run `php artisan passport:install`
@@ -23,6 +23,6 @@ Follow the standard steps for completing the Passport package install:
 
 Next steps are required for this package:
 
-* Add `LaravelEnso\StatisticsManager\StatisticsManagerServiceProvider::class` to your providers list in `config/app.php`.
+* Add `LaravelEnso\ControlPanelApi\ControlPanelApiServiceProvider::class` to your providers list in `config/app.php`.
 * Run the migrations. 
 * Use the FE to define an OAuth client, and take note of the ID and the secret (you'll need these in the client that consumes the services)
