@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\StatisticsManager\app\Http\Controllers;
+namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -14,7 +14,7 @@ use LaravelEnso\Helpers\Classes\Object;
 use LaravelEnso\LogManager\app\Http\Controllers\LogManagerController;
 use Lcobucci\JWT\Parser;
 
-class StatisticsController extends Controller
+class ControlPanelApiController extends Controller
 {
     public function deleteOauthToken(Request $request)
     {

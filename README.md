@@ -1,6 +1,7 @@
-# StatisticsManager
+# Control Panel API
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/16b923e371364c2da8655c84a0455007)](https://www.codacy.com/app/laravel-enso/StatisticsManager?utm_source=github.com&utm_medium=referral&utm_content=laravel-enso/StatisticsManager&utm_campaign=badger)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3200ceba8aea4a31ac1dfe826328bcb1)](https://www.codacy.com/app/laravel-enso/ControlPanelApi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/ControlPanelApi&amp;utm_campaign=Badge_Grade)
+[![StyleCI](https://styleci.io/repos/88979520/shield?branch=master)](https://styleci.io/repos/88979520)
 
 The package depends on the Laravel/Passport official package.
 

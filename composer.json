@@ -1,6 +1,6 @@
 {
-    "name": "laravel-enso/statisticsmanager",
-    "description": "Statistics Manager for Laravel Enso",
+    "name": "laravel-enso/controlpanelapi",
+    "description": "Control Panel API for Laravel Enso",
     "type": "plugin",
     "license": "MIT",
     "authors": [
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\StatisticsManager\\": "src/"
+            "LaravelEnso\\ControlPanelApi\\": "src/"
         }
     }
 }
