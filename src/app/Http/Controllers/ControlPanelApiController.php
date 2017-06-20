@@ -18,16 +18,15 @@ use Lcobucci\JWT\Parser;
 
 class ControlPanelApiController extends Controller
 {
-
     public function setMaintenanceMode()
     {
-        $exitCode = Artisan::call('down', [ ]);
+        $exitCode = Artisan::call('down', []);
 
-        \Log::debug("exit code: ".$exitCode);
+        \Log::debug('exit code: '.$exitCode);
 
         return $exitCode;
     }
-    
+
     public function deleteOauthToken(Request $request)
     {
         $token = $request->bearerToken();
@@ -70,11 +69,9 @@ class ControlPanelApiController extends Controller
     {
         $response = [];
 
-
-        if(!$this->areDataTypesValid($dataTypes)) {
+        if (!$this->areDataTypesValid($dataTypes)) {
             return response('Invalid dataType(s) requested', 400);
         }
-
 
         foreach ($dataTypes as $type) {
             $typeGetter = 'get'.ucfirst($type);
@@ -138,7 +135,6 @@ class ControlPanelApiController extends Controller
 
     private function getLogFileSize()
     {
-
         $filename = 'laravel.log';
 
         $file = storage_path('logs/'.$filename);
@@ -152,11 +148,10 @@ class ControlPanelApiController extends Controller
 
     private function areDataTypesValid($dataTypes)
     {
-
         $acceptedDataTypes = (new DataTypesEnum())->getKeys();
         $diffs = array_diff($dataTypes, $acceptedDataTypes);
 
-        if(count($diffs)) {
+        if (count($diffs)) {
             return false;
         }
 
