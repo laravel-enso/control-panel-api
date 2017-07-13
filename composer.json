@@ -1,7 +1,13 @@
 {
     "name": "laravel-enso/controlpanelapi",
     "description": "Control Panel API for Laravel Enso",
-    "type": "plugin",
+    "keywords": [
+        "laravel-enso",
+        "controlpanel",
+        "api",
+        "laravel"
+    ],
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
@@ -13,11 +19,20 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
         "nesbot/carbon": "^1.0",
-        "laravel/passport": "^3.0"
+        "laravel/passport": "^3.0",
+        "laravel-enso/structuremanager": "^1.1"
     },
     "autoload": {
         "psr-4": {
             "LaravelEnso\\ControlPanelApi\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelEnso\\ControlPanelApi\\ControlPanelApiServiceProvider"
+            ],
+            "aliases": {}
         }
     }
 }

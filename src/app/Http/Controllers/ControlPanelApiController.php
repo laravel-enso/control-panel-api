@@ -13,7 +13,7 @@ use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypesEnum;
 use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\Helpers\Classes\Object;
-use LaravelEnso\LogManager\app\Http\Controllers\LogManagerController;
+use LaravelEnso\LogManager\app\Http\Controllers\LogController;
 use Lcobucci\JWT\Parser;
 
 class ControlPanelApiController extends Controller
@@ -40,7 +40,7 @@ class ControlPanelApiController extends Controller
 
     public function clearLaravelLog()
     {
-        $logManagerController = new LogManagerController();
+        $logManagerController = new LogController();
 
         return $logManagerController->destroy('laravel.log');
     }
