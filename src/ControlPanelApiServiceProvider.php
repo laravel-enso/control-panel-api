@@ -8,10 +8,9 @@ use Laravel\Passport\PassportServiceProvider;
 
 class ControlPanelApiServiceProvider extends ServiceProvider
 {
-
     private $providers = [
         AuthServiceProvider::class,
-        PassportServiceProvider::class
+        PassportServiceProvider::class,
     ];
 
     /**
