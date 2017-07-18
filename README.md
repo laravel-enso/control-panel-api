@@ -28,7 +28,7 @@ Follow the next steps for completing the [Passport package install](https://lara
 Next steps are required for this package:
 * Use the FE to define an OAuth client, and take note of the ID and the secret (you'll need these in the client that consumes the services)
 
-**Note** The packages comes with the `manageOauthTokens` policy that allows you to only show the `passport-clients` VueJS component to admins. 
+**Note** The packages comes with the `manage-oauth-tokens` policy that allows you to only show the `passport-clients` VueJS component to admins. 
 
 <!--h-->
 ### Contributions

@@ -18,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         //for passport oauth client_credentials type of authorization
         $this->app['router']->aliasMiddleware('passport', CheckClientCredentials::class);
 
-        \Gate::define('manageOauthTokens', function ($user) {
+        \Gate::define('manage-oauth-tokens', function ($user) {
             return $user->role->name === 'admin';
         });
     }
