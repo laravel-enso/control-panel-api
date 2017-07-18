@@ -13,23 +13,15 @@ class ControlPanelApiServiceProvider extends ServiceProvider
         PassportServiceProvider::class,
     ];
 
-    /**
-     * Bootstrap the application services.
-     *
-     * @return void
-     */
     public function boot()
     {
         Passport::routes();
 
-        $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-enso/controlpanelapi');
     }
 
-    /**
-     * Register the application providers.
-     *
-     * @return void
-     */
     public function register()
     {
         foreach ($this->providers as $provider) {

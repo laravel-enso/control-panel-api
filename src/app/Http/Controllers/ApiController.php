@@ -16,7 +16,7 @@ use LaravelEnso\Helpers\Classes\Object;
 use LaravelEnso\LogManager\app\Http\Controllers\LogController;
 use Lcobucci\JWT\Parser;
 
-class ControlPanelApiController extends Controller
+class ApiController extends Controller
 {
     public function setMaintenanceMode()
     {

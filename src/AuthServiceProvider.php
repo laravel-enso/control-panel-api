@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mihai
- * Date: 7/13/17
- * Time: 3:45 PM.
- */
 
 namespace LaravelEnso\ControlPanelApi;
 
@@ -19,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->app['router']->aliasMiddleware('passport', CheckClientCredentials::class);
 
         \Gate::define('manage-oauth-tokens', function ($user) {
-            return $user->role->name === 'admin';
+            return $user->isAdmin();
         });
     }
 }
