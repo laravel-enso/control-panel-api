@@ -20,7 +20,7 @@
         "laravel/framework": "5.4.*",
         "nesbot/carbon": "^1.0",
         "laravel/passport": "^3.0",
-        "laravel-enso/structuremanager": "^1.1"
+        "laravel-enso/structuremanager": "^1.2"
     },
     "autoload": {
         "psr-4": {
