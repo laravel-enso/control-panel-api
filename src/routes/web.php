@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'namespace' => 'LaravelEnso\ControlPanelApi\app\Http\Controllers',
+    'namespace'  => 'LaravelEnso\ControlPanelApi\app\Http\Controllers',
     'middleware' => ['passport'],
     'prefix'     => 'api/v1',
     'as'         => 'api.v1.', ],
@@ -13,7 +13,7 @@ Route::group([
     });
 
 Route::get(
-		'system/controlPanelApi',
-		'LaravelEnso\ControlPanelApi\app\Http\Controllers\ControlPanelController'
-	)->name('system.controlPanelApi.index')
-	->middleware(['web', 'auth', 'core']);
+        'system/controlPanelApi',
+        'LaravelEnso\ControlPanelApi\app\Http\Controllers\ControlPanelController'
+    )->name('system.controlPanelApi.index')
+    ->middleware(['web', 'auth', 'core']);
