@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="content-header">
-        @include('laravel-enso/menumanager::breadcrumbs')
+        <breadcrumbs></breadcrumbs>
     </section>
     <section class="content">
         @can('manage-oauth-tokens')
