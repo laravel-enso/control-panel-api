@@ -23,7 +23,7 @@ Follow the next steps for completing the [Passport package install](https://lara
     - Vue.component('passport-authorized-clients', require('./components/passport/AuthorizedClients.vue'));
     - Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
 * compile the js assets `npm run dev`, `gulp`, etc.
-* include the component `<passport-clients></passport-clients>` where desired.
+* include the component `<passport-clients></passport-clients>` where desired. Optionally, you may use the `manage-oauth-tokens` permission to allow just admins to manage the clients.
 
 Next steps are required for this package:
 * Use the FE to define an OAuth client, and take note of the ID and the secret (you'll need these in the client that consumes the services)

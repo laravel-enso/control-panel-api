@@ -19,7 +19,6 @@ class ControlPanelApiServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'laravel-enso/controlpanelapi');
     }
 
     public function register()

@@ -11,9 +11,3 @@ Route::group([
         Route::delete('token', 'ApiController@deleteOauthToken')->name('deleteOauthToken');
         Route::post('setMaintenanceMode', 'ApiController@setMaintenanceMode')->name('setMaintenanceMode');
     });
-
-Route::get(
-        'system/controlPanelApi',
-        'LaravelEnso\ControlPanelApi\app\Http\Controllers\ControlPanelController'
-    )->name('system.controlPanelApi.index')
-    ->middleware(['web', 'auth', 'core']);
