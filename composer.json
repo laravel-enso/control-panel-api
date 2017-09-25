@@ -30,7 +30,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\ControlPanelApi\\ControlPanelApiServiceProvider"
+                "LaravelEnso\\ControlPanelApi\\ControlPanelApiServiceProvider",
+                "LaravelEnso\\ControlPanelApi\\AuthServiceProvider"
             ],
             "aliases": {}
         }

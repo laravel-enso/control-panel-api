@@ -4,15 +4,9 @@ namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
-use Laravel\Passport\PassportServiceProvider;
 
 class ControlPanelApiServiceProvider extends ServiceProvider
 {
-    private $providers = [
-        AuthServiceProvider::class,
-        PassportServiceProvider::class,
-    ];
-
     public function boot()
     {
         Passport::routes();
@@ -23,8 +17,6 @@ class ControlPanelApiServiceProvider extends ServiceProvider
 
     public function register()
     {
-        foreach ($this->providers as $provider) {
-            $this->app->register($provider);
-        }
+        //
     }
 }
