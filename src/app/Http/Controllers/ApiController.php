@@ -12,7 +12,7 @@ use Jenssegers\Date\Date;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypesEnum;
 use LaravelEnso\Core\app\Models\Login;
-use LaravelEnso\Helpers\Classes\Object;
+use LaravelEnso\Helpers\Classes\Obj;
 use LaravelEnso\LogManager\app\Http\Controllers\LogController;
 use Lcobucci\JWT\Parser;
 
@@ -84,7 +84,7 @@ class ApiController extends Controller
 
     private function getLoginsCount($startDate, $endDate)
     {
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'loginsCount';
         $tmp->value = Login::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
 
@@ -93,7 +93,7 @@ class ApiController extends Controller
 
     private function getActionsCount($startDate, $endDate)
     {
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'actionsCount';
         $tmp->value = ActionLog::where('created_at', '>', $startDate)->where('created_at', '<', $endDate)->count();
 
@@ -102,7 +102,7 @@ class ApiController extends Controller
 
     private function getFailedJobsCount($startDate, $endDate)
     {
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'failedJobsCount';
         $tmp->value = DB::table('failed_jobs')
             ->select(DB::raw('*'))
@@ -115,7 +115,7 @@ class ApiController extends Controller
 
     private function getActiveSessionsCount()
     {
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'activeSessionsCount';
         $tmp->value = DB::table('sessions')
             ->select(DB::raw('*'))
@@ -126,7 +126,7 @@ class ApiController extends Controller
 
     private function getServerTime()
     {
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'serverTime';
         $tmp->value = Carbon::now()->toTimeString();
 
@@ -139,7 +139,7 @@ class ApiController extends Controller
 
         $file = storage_path('logs/'.$filename);
 
-        $tmp = new Object();
+        $tmp = new Obj();
         $tmp->key = 'logFileSize';
         $tmp->value = round((int) File::size($file) / 1048576, 2).' MB';
 
