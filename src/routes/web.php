@@ -1,10 +1,10 @@
 <?php
 
 Route::group([
-    'namespace' => 'LaravelEnso\ControlPanelApi\app\Http\Controllers',
+    'namespace'  => 'LaravelEnso\ControlPanelApi\app\Http\Controllers',
     'middleware' => ['passport'],
-    'prefix' => 'api/v1',
-    'as' => 'api.v1.',
+    'prefix'     => 'api/v1',
+    'as'         => 'api.v1.',
 ], function () {
     Route::get('statistics', 'ApiController@getStatistics')->name('statistics');
     Route::delete('clearLaravelLog', 'ApiController@clearLaravelLog')->name('clearLaravelLog');
