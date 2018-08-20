@@ -27,7 +27,7 @@ class ApiController extends Controller
         return $exitCode;
     }
 
-    public function deleteOauthToken(Request $request)
+    public function destroyToken(Request $request)
     {
         $token = $request->bearerToken();
         $id = (new Parser())->parse($token)->getHeader('jti');
@@ -54,7 +54,7 @@ class ApiController extends Controller
      *
      * @return array
      */
-    public function getStatistics(Request $request)
+    public function statistics(Request $request)
     {
         $startDate = Date::parse($request->get('startDate'))->format('Y-m-d');
         $endDate = Date::parse($request->get('endDate'))->format('Y-m-d');
