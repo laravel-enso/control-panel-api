@@ -26,7 +26,6 @@
     "require": {
         "php": ">=7.1.0",
         "laravel/framework": "5.6.*",
-        "laravel/passport": "^7.0",
         "laravel-enso/core": "2.12.*",
         "laravel-enso/helpers": "1.7.*",
         "laravel-enso/structuremanager": "2.2.*"
@@ -39,7 +38,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelEnso\\ControlPanelApi\\AppServiceProvider"
+                "LaravelEnso\\ControlPanelApi\\AppServiceProvider",
+                "LaravelEnso\\ControlPanelApi\\AuthServiceProvider"
             ],
             "aliases": {}
         }
