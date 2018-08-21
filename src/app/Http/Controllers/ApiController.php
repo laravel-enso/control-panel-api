@@ -31,7 +31,7 @@ class ApiController extends Controller
 
     public function clearLog()
     {
-        $log = (new Destroyer(self::LogFile))
+        (new Destroyer(self::LogFile))
             ->run();
 
         return json_encode(['logSize' => 0]);
