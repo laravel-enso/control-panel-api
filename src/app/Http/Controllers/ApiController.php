@@ -2,10 +2,10 @@
 
 namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use LaravelEnso\LogManager\app\Classes\Destroyer;
+use Illuminate\Http\Request;
 use LaravelEnso\ControlPanelApi\app\Http\Responses\StatisticsResponse;
+use LaravelEnso\LogManager\app\Classes\Destroyer;
 
 class ApiController extends Controller
 {
