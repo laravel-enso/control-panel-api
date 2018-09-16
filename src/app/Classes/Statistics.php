@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\app\Classes;
 
-use App\User;
+use LaravelEnso\Core\app\Models\User;
 use Carbon\Carbon;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
