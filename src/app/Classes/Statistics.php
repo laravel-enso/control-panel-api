@@ -30,7 +30,7 @@ class Statistics
     public function get()
     {
         return $this->requestIsValid()
-            ? json_encode($this->statistics())
+            ? $this->statistics()
             : null;
     }
 

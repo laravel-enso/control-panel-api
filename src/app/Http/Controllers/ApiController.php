@@ -29,6 +29,15 @@ class ApiController extends Controller
         return json_encode($response);
     }
 
+    public function downloadLog()
+    {
+        $headers = ['Content-Type: application/log'];
+
+        return response()->download(
+            storage_path('logs/laravel.log'), 'laravel.log', $headers
+        );
+    }
+
     public function clearLog()
     {
         (new Destroyer(self::LogFile))
