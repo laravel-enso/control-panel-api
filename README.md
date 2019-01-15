@@ -13,7 +13,7 @@ The package depends on the Laravel/Passport official package.
 ### Installation
 
 Follow the next steps for completing the [Passport package install](https://laravel.com/docs/5.4/passport#installation):
-* Add `LaravelEnso\ControlPanelApi\ControlPanelApiServiceProvider::class` to your providers list in `config/app.php`.
+* run `composer require laravel-enso/ControlPanelApi`
 * run `php artisan migrate`
 * run `php artisan passport:install`
 * set `'driver' => 'passport',` inside `config/auth.php` for the api guard.
