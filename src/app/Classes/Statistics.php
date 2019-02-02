@@ -3,10 +3,10 @@
 namespace LaravelEnso\ControlPanelApi\app\Classes;
 
 use Carbon\Carbon;
+use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
-use LaravelEnso\Core\app\Models\Login;
-use LaravelEnso\Core\app\Models\User;
 
 class Statistics
 {
@@ -133,6 +133,11 @@ class Statistics
         $size = \File::size(storage_path('logs/laravel.log'));
 
         return round($size / 1048576, 2);
+    }
+
+    private function version()
+    {
+        return config('enso.config.version');
     }
 
     private function status()
