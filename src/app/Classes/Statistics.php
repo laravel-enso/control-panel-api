@@ -3,10 +3,10 @@
 namespace LaravelEnso\ControlPanelApi\app\Classes;
 
 use Carbon\Carbon;
-use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
+use LaravelEnso\Core\app\Models\Login;
+use LaravelEnso\Core\app\Models\User;
 
 class Statistics
 {
