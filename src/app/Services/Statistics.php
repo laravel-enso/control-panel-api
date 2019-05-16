@@ -1,12 +1,13 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Classes;
+namespace LaravelEnso\ControlPanelApi\app\Services;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use LaravelEnso\Core\app\Models\User;
+use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
-use LaravelEnso\Core\app\Models\Login;
-use LaravelEnso\Core\app\Models\User;
 
 class Statistics
 {
@@ -27,7 +28,7 @@ class Statistics
         $this->dataTypes = json_decode($params['dataTypes']);
     }
 
-    public function get()
+    public function handle()
     {
         return $this->requestIsValid()
             ? $this->statistics()
@@ -102,8 +103,8 @@ class Statistics
 
     private function failedJobs()
     {
-        $query = \DB::table('failed_jobs')
-                    ->select(\DB::raw('*'));
+        $query = DB::table('failed_jobs')
+                    ->selectRaw('*');
 
         if ($this->startDate) {
             $query->where('failed_at', '>', $this->startDate);
@@ -118,8 +119,8 @@ class Statistics
 
     private function sessions()
     {
-        return \DB::table('sessions')
-            ->select(\DB::raw('*'))
+        return DB::table('sessions')
+            ->selectRaw('*')
             ->count();
     }
 

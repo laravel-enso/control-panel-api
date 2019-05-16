@@ -1,11 +1,11 @@
 <!--h-->
 # Control Panel API
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3200ceba8aea4a31ac1dfe826328bcb1)](https://www.codacy.com/app/laravel-enso/ControlPanelApi?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/ControlPanelApi&amp;utm_campaign=Badge_Grade)
-[![StyleCI](https://styleci.io/repos/88979520/shield?branch=master)](https://styleci.io/repos/88979520)
-[![License](https://poser.pugx.org/laravel-enso/controlpanelapi/license)](https://https://packagist.org/packages/laravel-enso/controlpanelapi)
-[![Total Downloads](https://poser.pugx.org/laravel-enso/controlpanelapi/downloads)](https://packagist.org/packages/laravel-enso/controlpanelapi)
-[![Latest Stable Version](https://poser.pugx.org/laravel-enso/controlpanelapi/version)](https://packagist.org/packages/laravel-enso/controlpanelapi)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3200ceba8aea4a31ac1dfe826328bcb1)](https://www.codacy.com/app/laravel-enso/control-panel-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=laravel-enso/control-panel-api&amp;utm_campaign=Badge_Grade)
+[![StyleCI](https://github.styleci.io/repos/88979520/shield?branch=master)](https://github.styleci.io/repos/88979520)
+[![License](https://poser.pugx.org/laravel-enso/control-panel-api/license)](https://https://packagist.org/packages/laravel-enso/control-panel-api)
+[![Total Downloads](https://poser.pugx.org/laravel-enso/control-panel-api/downloads)](https://packagist.org/packages/laravel-enso/control-panel-api)
+[![Latest Stable Version](https://poser.pugx.org/laravel-enso/control-panel-api/version)](https://packagist.org/packages/laravel-enso/control-panel-api)
 <!--/h-->
 
 The package depends on the Laravel/Passport official package.

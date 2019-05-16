@@ -3,15 +3,15 @@
 namespace LaravelEnso\ControlPanelApi\app\Http\Responses;
 
 use Illuminate\Contracts\Support\Responsable;
-use LaravelEnso\ControlPanelApi\app\Classes\Statistics;
+use LaravelEnso\ControlPanelApi\app\Services\Statistics;
 
 class StatisticsResponse implements Responsable
 {
     public function toResponse($request)
     {
-        $stats = (new Statistics($request->all()))->get();
+        $stats = (new Statistics($request->all()))->handle();
 
-        if (is_null($stats)) {
+        if ($stats === null) {
             return response('Invalid dataType(s) requested', 500);
         }
 

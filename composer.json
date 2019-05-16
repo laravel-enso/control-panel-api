@@ -1,5 +1,5 @@
 {
-    "name": "laravel-enso/controlpanelapi",
+    "name": "laravel-enso/control-panel-api",
     "description": "Control Panel API for Laravel Enso",
     "keywords": [
         "laravel-enso",
@@ -25,9 +25,8 @@
     ],
     "require": {
         "php": ">=7.1.0",
-        "laravel/framework": "5.8.*",
-        "laravel-enso/core": "4.2.*",
-        "laravel-enso/helpers": "1.10.*"
+        "laravel-enso/core": "4.3.*",
+        "laravel-enso/helpers": "1.11.*"
     },
     "autoload": {
         "psr-4": {
