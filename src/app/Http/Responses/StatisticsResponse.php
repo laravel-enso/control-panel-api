@@ -11,10 +11,8 @@ class StatisticsResponse implements Responsable
     {
         $stats = (new Statistics($request->all()))->handle();
 
-        if ($stats === null) {
-            return response('Invalid dataType(s) requested', 500);
-        }
-
-        return $stats;
+        return $stats === null
+            ? response('Invalid dataType(s) requested', 500)
+            : $stats;
     }
 }

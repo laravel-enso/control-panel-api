@@ -11,8 +11,7 @@ class ClearLog extends Controller
 
     public function __invoke()
     {
-        (new Destroyer(self::LogFile))
-            ->run();
+        (new Destroyer(self::LogFile))->run();
 
         return json_encode(['logSize' => 0]);
     }

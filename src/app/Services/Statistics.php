@@ -4,6 +4,7 @@ namespace LaravelEnso\ControlPanelApi\app\Services;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
@@ -131,7 +132,7 @@ class Statistics
 
     private function logSize()
     {
-        $size = \File::size(storage_path('logs/laravel.log'));
+        $size = File::size(storage_path('logs/laravel.log'));
 
         return round($size / 1048576, 2);
     }
