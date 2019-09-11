@@ -3,6 +3,7 @@
 namespace LaravelEnso\ControlPanelApi\app\Services;
 
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Core\app\Models\User;
@@ -40,7 +41,7 @@ class Statistics
     {
         return collect($this->dataTypes)
             ->reduce(function ($response, $type) {
-                $attribute = camel_case($type);
+                $attribute = Str::camel($type);
                 $response[$attribute] = $this->{$attribute}();
 
                 return $response;
