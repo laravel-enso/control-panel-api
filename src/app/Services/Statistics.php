@@ -64,7 +64,6 @@ class Statistics
 
     private function failedJobs()
     {
-
         return $this->filter(
             DB::table('failed_jobs')->selectRaw('*'),
             'failed_at'
