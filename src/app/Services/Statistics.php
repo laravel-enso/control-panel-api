@@ -19,12 +19,14 @@ class Statistics
 
     public function __construct($params)
     {
+        $format = config('enso.config.dateTimeFormat');
+
         $this->startDate = isset($params['startDate'])
-            ? Carbon::parse($params['startDate'])->format('Y-m-d')
+            ? Carbon::createFromFormat($format, $params['startDate'])
             : null;
 
         $this->endDate = isset($params['endDate'])
-            ? Carbon::parse($params['endDate'])->format('Y-m-d')
+            ? Carbon::createFromFormat($format, $params['endDate'])
             : null;
 
         $this->dataTypes = json_decode($params['dataTypes']);
@@ -50,32 +52,12 @@ class Statistics
 
     private function logins()
     {
-        $logins = Login::query();
-
-        if ($this->startDate) {
-            $logins->where('created_at', '>', $this->startDate);
-        }
-
-        if ($this->endDate) {
-            $logins->where('created_at', '<', $this->endDate);
-        }
-
-        return $logins->count();
+        return $this->filter(Login::query())->count();
     }
 
     private function actions()
     {
-        $actionLogs = ActionLog::query();
-
-        if ($this->startDate) {
-            $actionLogs->where('created_at', '>', $this->startDate);
-        }
-
-        if ($this->endDate) {
-            $actionLogs->where('created_at', '<', $this->endDate);
-        }
-
-        return $actionLogs->count();
+        return $this->filter(ActionLog::query())->count();
     }
 
     private function users()
@@ -90,33 +72,16 @@ class Statistics
 
     private function newUsers()
     {
-        $users = User::query();
-
-        if ($this->startDate) {
-            $users->where('created_at', '>', $this->startDate);
-        }
-
-        if ($this->endDate) {
-            $users->where('created_at', '<', $this->endDate);
-        }
-
-        return $users->count();
+        return $this->filter(User::query())->count();
     }
 
     private function failedJobs()
     {
-        $query = DB::table('failed_jobs')
-                    ->selectRaw('*');
 
-        if ($this->startDate) {
-            $query->where('failed_at', '>', $this->startDate);
-        }
-
-        if ($this->endDate) {
-            $query->where('failed_at', '<', $this->endDate);
-        }
-
-        return $query->count();
+        return $this->filter(
+            DB::table('failed_jobs')->selectRaw('*'),
+            'failed_at'
+        )->count();
     }
 
     private function sessions()
@@ -148,6 +113,15 @@ class Statistics
         return app()->isDownForMaintenance()
             ? 'down'
             : 'up';
+    }
+
+    private function filter($query, $attribute = 'created_at')
+    {
+        return $query->when($this->startDate, function ($query) use ($attribute) {
+            $query->where($attribute, '>=', $this->startDate);
+        })->when($this->endDate, function ($query) use ($attribute) {
+            $query->where($attribute, '<=', $this->endDate);
+        });
     }
 
     private function requestIsValid()
