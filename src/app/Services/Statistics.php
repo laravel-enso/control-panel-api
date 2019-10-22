@@ -8,28 +8,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Core\app\Models\Login;
+use LaravelEnso\Helpers\app\Classes\Obj;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
 use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
 
 class Statistics
 {
-    private $startDate;
-    private $endDate;
-    private $dataTypes;
-
     public function __construct($params)
     {
-        $format = config('enso.config.dateTimeFormat');
-
-        $this->startDate = isset($params['startDate'])
-            ? Carbon::createFromFormat($format, $params['startDate'])
-            : null;
-
-        $this->endDate = isset($params['endDate'])
-            ? Carbon::createFromFormat($format, $params['endDate'])
-            : null;
-
-        $this->dataTypes = json_decode($params['dataTypes']);
+        $this->params = $this->params($params);
     }
 
     public function handle()
@@ -41,7 +28,7 @@ class Statistics
 
     private function statistics()
     {
-        return collect($this->dataTypes)
+        return collect($this->params->get('dataTypes'))
             ->reduce(function ($response, $type) {
                 $attribute = Str::camel($type);
                 $response[$attribute] = $this->{$attribute}();
@@ -117,17 +104,24 @@ class Statistics
 
     private function filter($query, $attribute = 'created_at')
     {
-        return $query->when($this->startDate, function ($query) use ($attribute) {
-            $query->where($attribute, '>=', $this->startDate);
-        })->when($this->endDate, function ($query) use ($attribute) {
-            $query->where($attribute, '<=', $this->endDate);
+        return $query->when($this->params->filled('startDate'), function ($query) use ($attribute) {
+            $query->where($attribute, '>=', $this->params->get('startDate'));
+        })->when($this->params->filled('endDate'), function ($query) use ($attribute) {
+            $query->where($attribute, '<=', $this->params->get('endDate'));
         });
     }
 
     private function requestIsValid()
     {
-        return collect($this->dataTypes)
+        return collect($this->params->get('dataTypes'))
             ->diff(DataTypes::keys())
             ->isEmpty();
+    }
+
+    private function params(array $params)
+    {
+        $params['dataTypes'] = json_decode($params['dataTypes']);
+
+        return new Obj($params);
     }
 }
