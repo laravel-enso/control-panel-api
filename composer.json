@@ -24,9 +24,9 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "4.5.*",
+        "laravel-enso/core": "4.6.*",
         "laravel-enso/enums": "1.1.*",
-        "laravel-enso/helpers": "1.13.*"
+        "laravel-enso/helpers": "1.14.*"
     },
     "autoload": {
         "psr-4": {
