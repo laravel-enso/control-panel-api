@@ -3,8 +3,8 @@
 namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Support\Facades\Auth;
-use LaravelEnso\Core\app\Models\User;
 use Illuminate\Support\ServiceProvider;
+use LaravelEnso\Core\app\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
