@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use LaravelEnso\ActionLogger\app\Models\ActionLog;
+use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
 use LaravelEnso\Core\app\Models\Login;
 use LaravelEnso\Core\app\Models\User;
 use LaravelEnso\Helpers\app\Classes\Obj;
@@ -19,7 +20,7 @@ class Statistics
 
     public function handle()
     {
-        return Request::isValid($this->params)
+        return $this->requestIsValid()
             ? $this->statistics()
             : null;
     }
@@ -106,6 +107,13 @@ class Statistics
         })->when($this->params->filled('endDate'), function ($query) use ($attribute) {
             $query->where($attribute, '<=', $this->params->get('endDate'));
         });
+    }
+
+    private function requestIsValid()
+    {
+        return collect($this->params->get('dataTypes'))
+            ->diff(DataTypes::keys())
+            ->isEmpty();
     }
 
     private function params(array $params)
