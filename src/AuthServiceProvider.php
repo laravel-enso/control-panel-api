@@ -10,7 +10,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Auth::viaRequest('token', fn($request) => (
+        Auth::viaRequest('token', fn ($request) => (
             config('enso.config.ensoApiToken') === $request->header('Api-Token')
                 ? new User()
                 : null
