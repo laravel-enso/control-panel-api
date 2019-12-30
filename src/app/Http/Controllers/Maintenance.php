@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
+namespace LaravelEnso\ControlPanelApi\App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;

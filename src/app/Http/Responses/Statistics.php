@@ -1,15 +1,15 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Http\Responses;
+namespace LaravelEnso\ControlPanelApi\App\Http\Responses;
 
 use Illuminate\Contracts\Support\Responsable;
-use LaravelEnso\ControlPanelApi\app\Services\Statistics;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics as Service;
 
-class StatisticsResponse implements Responsable
+class Statistics implements Responsable
 {
     public function toResponse($request)
     {
-        $stats = (new Statistics($request->all()))->handle();
+        $stats = (new Service($request->all()))->handle();
 
         return $stats === null
             ? response('Invalid dataType(s) requested', 500)

@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
+namespace LaravelEnso\ControlPanelApi\App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\Logs\app\Services\Destroyer;
+use LaravelEnso\Logs\App\Services\ClearLog as Service;
 
 class ClearLog extends Controller
 {
@@ -11,7 +11,7 @@ class ClearLog extends Controller
 
     public function __invoke()
     {
-        (new Destroyer(self::LogFile))->run();
+        (new Service(self::LogFile))->handle();
 
         return json_encode(['logSize' => 0]);
     }

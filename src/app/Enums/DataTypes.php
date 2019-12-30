@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Enums;
+namespace LaravelEnso\ControlPanelApi\App\Enums;
 
-use LaravelEnso\Enums\app\Services\Enum;
+use LaravelEnso\Enums\App\Services\Enum;
 
 class DataTypes extends Enum
 {

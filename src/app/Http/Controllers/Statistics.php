@@ -1,14 +1,14 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Http\Controllers;
+namespace LaravelEnso\ControlPanelApi\App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use LaravelEnso\ControlPanelApi\app\Http\Responses\StatisticsResponse;
+use LaravelEnso\ControlPanelApi\App\Http\Responses\Statistics as Response;
 
 class Statistics extends Controller
 {
     public function __invoke()
     {
-        return new StatisticsResponse();
+        return new Response();
     }
 }

@@ -1,15 +1,18 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\app\Services;
+namespace LaravelEnso\ControlPanelApi\App\Services;
 
+use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use LaravelEnso\ActionLogger\app\Models\ActionLog;
-use LaravelEnso\ControlPanelApi\app\Enums\DataTypes;
-use LaravelEnso\Core\app\Models\Login;
-use LaravelEnso\Core\app\Models\User;
-use LaravelEnso\Helpers\app\Classes\Obj;
+use LaravelEnso\ActionLogger\App\Models\ActionLog;
+use LaravelEnso\ControlPanelApi\App\Enums\DataTypes;
+use LaravelEnso\Core\App\Models\Login;
+use LaravelEnso\Core\App\Models\User;
+use LaravelEnso\Helpers\App\Classes\Decimals;
+use LaravelEnso\Helpers\App\Classes\Obj;
 
 class Statistics
 {
@@ -27,13 +30,10 @@ class Statistics
 
     private function statistics()
     {
-        return collect($this->params->get('dataTypes'))
-            ->reduce(function ($response, $type) {
-                $attribute = Str::camel($type);
-                $response[$attribute] = $this->{$attribute}();
-
-                return $response;
-            }, []);
+        return $this->params->get('dataTypes')
+            ->map(fn ($type) => Str::camel($type))
+            ->reduce(fn ($response, $type) => $response
+                ->put($type, $this->{$type}), new Collection());
     }
 
     private function logins()
@@ -64,28 +64,27 @@ class Statistics
     private function failedJobs()
     {
         return $this->filter(
-            DB::table('failed_jobs')->selectRaw('*'),
-            'failed_at'
+            DB::table('failed_jobs')->selectRaw('id'), 'failed_at'
         )->count();
     }
 
     private function sessions()
     {
         return DB::table('sessions')
-            ->selectRaw('*')
+            ->selectRaw('user_id')
             ->count();
     }
 
     private function serverTime()
     {
-        return now()->format('H:i');
+        return Carbon::now()->format('H:i');
     }
 
     private function logSize()
     {
         $size = File::size(storage_path('logs/laravel.log'));
 
-        return round($size / 1048576, 2);
+        return Decimals::div($size, 1024 * 1024);
     }
 
     private function version()
@@ -95,23 +94,23 @@ class Statistics
 
     private function status()
     {
-        return app()->isDownForMaintenance()
-            ? 'down'
-            : 'up';
+        return app()->isDownForMaintenance() ? 'down' : 'up';
     }
 
     private function filter($query, $attribute = 'created_at')
     {
-        return $query->when($this->params->filled('startDate'), function ($query) use ($attribute) {
-            $query->where($attribute, '>=', $this->params->get('startDate'));
-        })->when($this->params->filled('endDate'), function ($query) use ($attribute) {
-            $query->where($attribute, '<=', $this->params->get('endDate'));
-        });
+        return $query->when(
+            $this->params->filled('startDate'), fn ($query) => $query
+                ->where($attribute, '>=', $this->params->get('startDate'))
+        )->when(
+            $this->params->filled('endDate'), fn ($query) => $query
+                ->where($attribute, '<=', $this->params->get('endDate'))
+        );
     }
 
     private function requestIsValid()
     {
-        return collect($this->params->get('dataTypes'))
+        return $this->params->get('dataTypes')
             ->diff(DataTypes::keys())
             ->isEmpty();
     }
