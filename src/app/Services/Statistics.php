@@ -33,7 +33,7 @@ class Statistics
         return $this->params->get('dataTypes')
             ->map(fn ($type) => Str::camel($type))
             ->reduce(fn ($response, $type) => $response
-                ->put($type, $this->{$type}), new Collection());
+                ->put($type, $this->{$type}()), new Collection());
     }
 
     private function logins()
