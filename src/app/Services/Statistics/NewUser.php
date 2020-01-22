@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use LaravelEnso\Core\App\Models\User;
 
-class NewUser extends BaseStatistics
+class NewUser extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return $this->filter(User::query())->count();
     }

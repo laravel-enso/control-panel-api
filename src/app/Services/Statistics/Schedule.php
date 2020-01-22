@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use Illuminate\Support\Facades\Cache;
 
-class Schedule extends BaseStatistics
+class Schedule extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return Cache::has('schedule_monitor');
     }

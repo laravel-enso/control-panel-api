@@ -5,9 +5,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class Memory extends BaseStatistics
+class Memory extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         if (PHP_OS === 'Linux') {
             $free = (string) trim(shell_exec('free'));

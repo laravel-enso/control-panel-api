@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class Load extends BaseStatistics
+class Load extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return Decimals::mul(
             Decimals::div(sys_getloadavg()[0], $this->cpues()), 100

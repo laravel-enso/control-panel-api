@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use LaravelEnso\Core\App\Models\User;
 
-class ActiveUser extends BaseStatistics
+class ActiveUser extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return User::active()->count();
     }

@@ -5,9 +5,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 use Illuminate\Support\Facades\App;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
-class Horizon extends BaseStatistics
+class Horizon extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         $masters = App::make(MasterSupervisorRepository::class)->all();
 

@@ -5,9 +5,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class LogSize extends BaseStatistics
+class LogSize extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         $size = File::size(storage_path('logs/laravel.log'));
 

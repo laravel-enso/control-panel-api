@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
-class PhpVersion extends BaseStatistics
+class PhpVersion extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return PHP_VERSION;
     }

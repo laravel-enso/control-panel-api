@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use LaravelEnso\ActionLogger\App\Models\ActionLog as Model;
 
-class ActionLog extends BaseStatistics
+class ActionLog extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return $this->filter(Model::query())->count();
     }

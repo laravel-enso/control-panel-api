@@ -5,7 +5,7 @@ namespace LaravelEnso\ControlPanelApi\App\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;
-use LaravelEnso\ControlPanelApi\App\Contracts\Statistics as Contract;
+use LaravelEnso\ControlPanelApi\App\Contracts\Sensor as Contract;
 use LaravelEnso\ControlPanelApi\App\Enums\DataTypes;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActionLog;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActiveUser;
@@ -75,7 +75,7 @@ class Statistics
     {
         return $this->params->get('dataTypes')
             ->reduce(fn ($response, $type) => $response
-                ->put(Str::camel($type), $this->stat($type)->handle()), new Collection());
+                ->put(Str::camel($type), $this->stat($type)->value()), new Collection());
     }
 
     private function stat($type): Contract

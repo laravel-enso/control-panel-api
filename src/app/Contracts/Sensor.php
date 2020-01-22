@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Contracts;
 
-interface Statistics
+interface Sensor
 {
-    public function handle();
+    public function value();
 }

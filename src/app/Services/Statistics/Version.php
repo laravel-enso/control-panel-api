@@ -2,9 +2,9 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
-class Version extends BaseStatistics
+class Version extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return config('enso.config.version');
     }

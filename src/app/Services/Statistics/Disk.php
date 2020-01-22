@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class Disk extends BaseStatistics
+class Disk extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return Decimals::div(disk_free_space('/'), 1024 ** 3);
     }

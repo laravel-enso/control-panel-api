@@ -2,10 +2,10 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
-use LaravelEnso\ControlPanelApi\App\Contracts\Statistics;
+use LaravelEnso\ControlPanelApi\App\Contracts\Sensor;
 use LaravelEnso\Helpers\App\Classes\Obj;
 
-abstract class BaseStatistics implements Statistics
+abstract class BaseSensor implements Sensor
 {
     private Obj $params;
 

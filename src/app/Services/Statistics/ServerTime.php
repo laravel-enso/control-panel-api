@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 use Carbon\Carbon;
 
-class ServerTime extends BaseStatistics
+class ServerTime extends BaseSensor
 {
-    public function handle()
+    public function value()
     {
         return Carbon::now()->format('H:i');
     }
