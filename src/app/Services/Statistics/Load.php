@@ -9,11 +9,11 @@ class Load extends BaseSensor
     public function value()
     {
         return Decimals::mul(
-            Decimals::div(sys_getloadavg()[0], $this->cpues()), 100
+            Decimals::div(sys_getloadavg()[0], $this->cpus()), 100
         );
     }
 
-    private function cpues()
+    private function cpus()
     {
         switch (PHP_OS) {
             case 'Linux':
