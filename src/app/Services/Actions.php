@@ -24,7 +24,7 @@ class Actions
     public function all()
     {
         return (new Collection($this->actions))
-            ->map(fn ($action) => new $action());
+            ->map(fn ($action) => App::make($action));
     }
 
     public function get($action)
