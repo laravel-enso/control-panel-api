@@ -5,9 +5,16 @@ namespace LaravelEnso\ControlPanelApi;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\ControlPanelApi\App\Commands\Monitor;
+use LaravelEnso\ControlPanelApi\App\Services\Actions;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public $singletons = [
+        'statistics' => Statistics::class,
+        'actions' => Actions::class,
+    ];
+
     public function boot()
     {
         $this->command()

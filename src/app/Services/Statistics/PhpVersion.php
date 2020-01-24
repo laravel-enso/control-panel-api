@@ -8,4 +8,14 @@ class PhpVersion extends BaseSensor
     {
         return PHP_VERSION;
     }
+
+    public function description(): string
+    {
+        return 'version of php';
+    }
+
+    public function icon()
+    {
+        return ['fab', 'php'];
+    }
 }

@@ -10,14 +10,31 @@ class Memory extends BaseSensor
     public function value()
     {
         if (PHP_OS === 'Linux') {
-            $free = (string) trim(shell_exec('free'));
-            $mem = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
-                ->filter()
-                ->values();
-
-            return Decimals::mul(Decimals::div($mem[2], $mem[1]), 100, 0);
+            return "{$this->memoryUsage()} %";
         }
 
-        return 0;
+        return '-';
+    }
+
+    public function description(): string
+    {
+        return 'memory usage';
+    }
+
+    public function icon()
+    {
+        return 'memory';
+    }
+
+    private function memoryUsage()
+    {
+        $free = (string) trim(shell_exec('free'));
+        $mem = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
+            ->filter()
+            ->values();
+
+        return Decimals::mul(
+            Decimals::div($mem[2], $mem[1]), 100, 0
+        );
     }
 }

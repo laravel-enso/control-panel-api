@@ -12,4 +12,19 @@ class FailedJob extends BaseSensor
             DB::table('failed_jobs')->selectRaw('id'), 'failed_at'
         )->count();
     }
+
+    public function description(): string
+    {
+        return 'number of failed jobs';
+    }
+
+    public function icon()
+    {
+        return 'exclamation-circle';
+    }
+
+    public function class(): string
+    {
+        return '';
+    }
 }

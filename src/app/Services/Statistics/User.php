@@ -10,4 +10,14 @@ class User extends BaseSensor
     {
         return Model::count();
     }
+
+    public function description(): string
+    {
+        return 'number of users';
+    }
+
+    public function icon()
+    {
+        return 'users';
+    }
 }

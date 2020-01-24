@@ -14,6 +14,11 @@ abstract class BaseSensor implements Sensor
         $this->params = $params;
     }
 
+    public function class(): string
+    {
+        return '';
+    }
+
     protected function filter($query, $attribute = 'created_at')
     {
         return $query->when(

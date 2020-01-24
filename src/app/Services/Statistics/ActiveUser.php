@@ -10,4 +10,19 @@ class ActiveUser extends BaseSensor
     {
         return User::active()->count();
     }
+
+    public function description(): string
+    {
+        return 'number of active users';
+    }
+
+    public function icon()
+    {
+        return 'user-friends';
+    }
+
+    public function class(): string
+    {
+        return '';
+    }
 }

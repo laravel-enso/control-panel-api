@@ -8,4 +8,14 @@ class Version extends BaseSensor
     {
         return config('enso.config.version');
     }
+
+    public function description(): string
+    {
+        return 'version of application';
+    }
+
+    public function icon()
+    {
+        return ['fab', 'enso'];
+    }
 }

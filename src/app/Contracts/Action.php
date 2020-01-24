@@ -2,13 +2,15 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Contracts;
 
-interface Sensor
+interface Action
 {
-    public function value();
+    public function handle();
+
+    public function label(): string;
 
     public function description(): string;
 
     public function icon();
 
-    public function class(): string;
+    public function confirmation(): bool;
 }

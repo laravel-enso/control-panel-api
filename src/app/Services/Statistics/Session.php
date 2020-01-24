@@ -12,4 +12,14 @@ class Session extends BaseSensor
             ->selectRaw('user_id')
             ->count();
     }
+
+    public function description(): string
+    {
+        return 'number of sessions';
+    }
+
+    public function icon()
+    {
+        return 'link';
+    }
 }

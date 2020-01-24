@@ -13,4 +13,19 @@ class Job extends BaseSensor
             ->filter(fn ($job) => $job->status === 'pending')
             ->count();
     }
+
+    public function description(): string
+    {
+        return 'number of pending jobs';
+    }
+
+    public function icon()
+    {
+        return 'hourglass-half';
+    }
+
+    public function class(): string
+    {
+        return '';
+    }
 }

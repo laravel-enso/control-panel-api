@@ -8,8 +8,23 @@ class Load extends BaseSensor
 {
     public function value()
     {
+        return "{$this->load()} %";
+    }
+
+    public function description(): string
+    {
+        return 'load of server';
+    }
+
+    public function icon()
+    {
+        return 'microchip';
+    }
+
+    private function load()
+    {
         return Decimals::mul(
-            Decimals::div(sys_getloadavg()[0], $this->cpus()), 100
+            Decimals::div(sys_getloadavg()[0], $this->cpus()), 100, 0
         );
     }
 

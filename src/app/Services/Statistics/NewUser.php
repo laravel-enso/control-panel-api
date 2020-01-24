@@ -10,4 +10,14 @@ class NewUser extends BaseSensor
     {
         return $this->filter(User::query())->count();
     }
+
+    public function description(): string
+    {
+        return 'number of new users';
+    }
+
+    public function icon()
+    {
+        return 'user-plus';
+    }
 }

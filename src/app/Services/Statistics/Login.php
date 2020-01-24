@@ -10,4 +10,14 @@ class Login extends BaseSensor
     {
         return $this->filter(Model::query())->count();
     }
+
+    public function description(): string
+    {
+        return 'number of logins';
+    }
+
+    public function icon()
+    {
+        return 'sign-in-alt';
+    }
 }
