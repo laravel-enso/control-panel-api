@@ -18,6 +18,6 @@ class Login extends BaseSensor
 
     public function icon()
     {
-        return 'sign-in-alt';
+        return ['fad', 'sign-in-alt'];
     }
 }

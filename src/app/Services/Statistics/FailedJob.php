@@ -9,7 +9,8 @@ class FailedJob extends BaseSensor
     public function value()
     {
         return $this->filter(
-            DB::table('failed_jobs')->selectRaw('id'), 'failed_at'
+            DB::table('failed_jobs')->selectRaw('id'),
+            'failed_at'
         )->count();
     }
 
@@ -20,7 +21,7 @@ class FailedJob extends BaseSensor
 
     public function icon()
     {
-        return 'exclamation-circle';
+        return ['fad', 'exclamation-circle'];
     }
 
     public function class(): string

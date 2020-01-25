@@ -18,14 +18,14 @@ class Load extends BaseSensor
 
     public function icon()
     {
-        return 'microchip';
+        return ['fad', 'microchip'];
     }
 
     private function load()
     {
-        return Decimals::mul(
-            Decimals::div(sys_getloadavg()[0], $this->cpus()), 100, 0
-        );
+        $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?: 1);
+
+        return Decimals::mul($div, 100, 0);
     }
 
     private function cpus()
@@ -35,8 +35,6 @@ class Load extends BaseSensor
                 return (int) shell_exec('cat /proc/cpuinfo | grep processor | wc -l');
             case 'Darwin':
                 return (int) shell_exec('sysctl -n hw.ncpu');
-            default:
-                return 1;
         }
     }
 }

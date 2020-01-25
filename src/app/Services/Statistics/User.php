@@ -18,6 +18,6 @@ class User extends BaseSensor
 
     public function icon()
     {
-        return 'users';
+        return ['fad', 'users'];
     }
 }

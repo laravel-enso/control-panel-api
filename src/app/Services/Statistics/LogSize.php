@@ -19,7 +19,7 @@ class LogSize extends BaseSensor
 
     public function icon()
     {
-        return 'terminal';
+        return ['fad', 'terminal'];
     }
 
     private function logSize(): string

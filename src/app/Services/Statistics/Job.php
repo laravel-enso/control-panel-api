@@ -21,7 +21,7 @@ class Job extends BaseSensor
 
     public function icon()
     {
-        return 'hourglass-half';
+        return ['fad', 'hourglass-half'];
     }
 
     public function class(): string

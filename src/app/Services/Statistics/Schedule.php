@@ -19,8 +19,8 @@ class Schedule extends BaseSensor
     public function icon()
     {
         return Cache::has('schedule_monitor')
-            ? 'check-circle'
-            : 'times-circle';
+            ? ['fad', 'check-circle']
+            : ['fad', 'times-circle'];
     }
 
     public function class(): string

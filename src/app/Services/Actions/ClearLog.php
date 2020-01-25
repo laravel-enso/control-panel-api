@@ -14,7 +14,7 @@ class ClearLog implements Action
 
     public function label(): string
     {
-        return 'Clear logs';
+        return 'Log';
     }
 
     public function description(): string
@@ -24,7 +24,7 @@ class ClearLog implements Action
 
     public function icon()
     {
-        return 'trash-alt';
+        return ['fad', 'trash-alt'];
     }
 
     public function confirmation(): bool

@@ -18,7 +18,7 @@ class ActiveUser extends BaseSensor
 
     public function icon()
     {
-        return 'user-friends';
+        return ['fad', 'user-friends'];
     }
 
     public function class(): string

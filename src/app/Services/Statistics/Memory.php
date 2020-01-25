@@ -23,7 +23,7 @@ class Memory extends BaseSensor
 
     public function icon()
     {
-        return 'memory';
+        return ['fad', 'memory'];
     }
 
     private function memoryUsage()
@@ -34,7 +34,9 @@ class Memory extends BaseSensor
             ->values();
 
         return Decimals::mul(
-            Decimals::div($mem[2], $mem[1]), 100, 0
+            Decimals::div($mem[2], $mem[1]),
+            100,
+            0
         );
     }
 }

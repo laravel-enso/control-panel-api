@@ -22,11 +22,11 @@ class Horizon extends BaseSensor
     {
         switch ($this->status()) {
             case 'running':
-                return 'check-circle';
+                return ['fad', 'check-circle'];
             case 'paused':
-                return 'pause-circle';
+                return ['fad', 'pause-circle'];
             default:
-                return 'times-circle';
+                return ['fad', 'times-circle'];
         }
     }
 

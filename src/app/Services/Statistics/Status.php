@@ -17,8 +17,8 @@ class Status extends BaseSensor
     public function icon()
     {
         return app()->isDownForMaintenance()
-            ? 'pause-circle'
-            : 'check-circle';
+            ? ['fad', 'pause-circle']
+            : ['fad', 'check-circle'];
     }
 
     public function class(): string

@@ -20,6 +20,6 @@ class Session extends BaseSensor
 
     public function icon()
     {
-        return 'link';
+        return ['fad', 'link'];
     }
 }

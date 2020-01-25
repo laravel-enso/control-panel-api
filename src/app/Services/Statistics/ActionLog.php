@@ -18,7 +18,7 @@ class ActionLog extends BaseSensor
 
     public function icon()
     {
-        return 'mouse-alt';
+        return ['fad', 'mouse-alt'];
     }
 
     public function class(): string

@@ -3,6 +3,7 @@
 namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\Core\App\Models\User;
 
@@ -15,7 +16,7 @@ class AuthServiceProvider extends ServiceProvider
 
     private function auth($request)
     {
-        return config('enso.config.ensoApiToken') === $request->header('Api-Token')
+        return Config::get('enso.config.ensoApiToken') === $request->header('Api-Token')
             ? new User()
             : null;
     }

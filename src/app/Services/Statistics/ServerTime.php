@@ -18,6 +18,6 @@ class ServerTime extends BaseSensor
 
     public function icon()
     {
-        return 'clock';
+        return ['fad', 'clock'];
     }
 }

@@ -18,7 +18,7 @@ class Disk extends BaseSensor
 
     public function icon()
     {
-        return 'hdd';
+        return ['fad', 'hdd'];
     }
 
     public function class(): string

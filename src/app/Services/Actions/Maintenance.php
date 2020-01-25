@@ -26,7 +26,7 @@ class Maintenance implements Action
 
     public function icon()
     {
-        return 'power-off';
+        return ['fad', 'power-off'];
     }
 
     public function confirmation(): bool

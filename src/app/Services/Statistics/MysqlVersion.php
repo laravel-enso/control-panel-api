@@ -18,6 +18,6 @@ class MysqlVersion extends BaseSensor
 
     public function icon()
     {
-        return 'database';
+        return ['fad', 'database'];
     }
 }

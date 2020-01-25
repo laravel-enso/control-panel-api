@@ -18,7 +18,7 @@ class DownloadLog implements Action
 
     public function label(): string
     {
-        return 'Download Log';
+        return 'Log';
     }
 
     public function description(): string
@@ -28,7 +28,7 @@ class DownloadLog implements Action
 
     public function icon()
     {
-        return 'download';
+        return ['fad', 'download'];
     }
 
     public function confirmation(): bool
