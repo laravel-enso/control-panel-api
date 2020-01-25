@@ -7,7 +7,13 @@ Route::namespace('LaravelEnso\ControlPanelApi\App\Http\Controllers')
     ->prefix('token')->as('token.')
     ->group(function () {
         Route::get('statistics', 'Statistics')->name('statistics');
-        Route::post('downloadLog', 'DownloadLog')->name('downloadLog');
-        Route::post('clearLog', 'ClearLog')->name('clearLog');
-        Route::post('maintenance', 'Maintenance')->name('maintenance');
+        Route::get('actions', 'Actions')->name('actions');
+        Route::any('{action}', 'Action')->name('action');
+    });
+
+Route::namespace('LaravelEnso\ControlPanelApi\App\Http\Controllers')
+    ->prefix('api/controlPanelApi')->as('api.controlPanelApi.')
+    ->middleware(['signed', 'bindings'])
+    ->group(function () {
+        Route::get('downloadLog', 'DownloadLog')->name('downloadLog');
     });

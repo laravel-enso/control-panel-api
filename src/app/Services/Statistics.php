@@ -2,123 +2,64 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services;
 
-use Carbon\Carbon;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
-use LaravelEnso\ActionLogger\App\Models\ActionLog;
-use LaravelEnso\ControlPanelApi\App\Enums\DataTypes;
-use LaravelEnso\Core\App\Models\Login;
-use LaravelEnso\Core\App\Models\User;
-use LaravelEnso\Helpers\App\Classes\Decimals;
-use LaravelEnso\Helpers\App\Classes\Obj;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActionLog;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActiveUser;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Disk;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\FailedJob;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Horizon;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Job;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Load;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Login;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\LogSize;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Memory;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\MysqlVersion;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\NewUser;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\PhpVersion;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Schedule;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\ServerTime;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Session;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Status;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\User;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\Version;
 
 class Statistics
 {
-    public function __construct($params)
+    private array $stats = [
+        'Statuses' => [
+            Status::class, Schedule::class, Horizon::class,
+        ],
+        'Server' => [
+            Load::class, Memory::class, Disk::class,
+        ],
+        'Users' => [
+            NewUser::class, ActiveUser::class, User::class,
+        ],
+        'Version' => [
+            MysqlVersion::class, PhpVersion::class, Version::class,
+        ],
+        'Login' => [
+            Login::class, ActionLog::class, Session::class,
+        ],
+        'Jobs' => [
+            Job::class, FailedJob::class,
+        ],
+        'Extra' => [
+            LogSize::class, ServerTime::class,
+        ],
+    ];
+
+    public function register($registers)
     {
-        $this->params = $this->params($params);
+        (new Collection(collect($registers)))
+            ->each(fn ($stats, $group) => $this->stats[$group] = [
+                ...($this->stats[$group] ?? []),
+                ...$stats,
+            ]);
     }
 
-    public function handle()
+    public function all()
     {
-        return $this->requestIsValid()
-            ? $this->statistics()
-            : null;
-    }
-
-    private function statistics()
-    {
-        return $this->params->get('dataTypes')
-            ->map(fn ($type) => Str::camel($type))
-            ->reduce(fn ($response, $type) => $response
-                ->put($type, $this->{$type}()), new Collection());
-    }
-
-    private function logins()
-    {
-        return $this->filter(Login::query())->count();
-    }
-
-    private function actions()
-    {
-        return $this->filter(ActionLog::query())->count();
-    }
-
-    private function users()
-    {
-        return User::count();
-    }
-
-    private function activeUsers()
-    {
-        return User::active()->count();
-    }
-
-    private function newUsers()
-    {
-        return $this->filter(User::query())->count();
-    }
-
-    private function failedJobs()
-    {
-        return $this->filter(
-            DB::table('failed_jobs')->selectRaw('id'), 'failed_at'
-        )->count();
-    }
-
-    private function sessions()
-    {
-        return DB::table('sessions')
-            ->selectRaw('user_id')
-            ->count();
-    }
-
-    private function serverTime()
-    {
-        return Carbon::now()->format('H:i');
-    }
-
-    private function logSize()
-    {
-        $size = File::size(storage_path('logs/laravel.log'));
-
-        return Decimals::div($size, 1024 * 1024);
-    }
-
-    private function version()
-    {
-        return config('enso.config.version');
-    }
-
-    private function status()
-    {
-        return app()->isDownForMaintenance() ? 'down' : 'up';
-    }
-
-    private function filter($query, $attribute = 'created_at')
-    {
-        return $query->when(
-            $this->params->filled('startDate'), fn ($query) => $query
-                ->where($attribute, '>=', $this->params->get('startDate'))
-        )->when(
-            $this->params->filled('endDate'), fn ($query) => $query
-                ->where($attribute, '<=', $this->params->get('endDate'))
-        );
-    }
-
-    private function requestIsValid()
-    {
-        return $this->params->get('dataTypes')
-            ->diff(DataTypes::keys())
-            ->isEmpty();
-    }
-
-    private function params(array $params)
-    {
-        $params['dataTypes'] = json_decode($params['dataTypes']);
-
-        return new Obj($params);
+        return $this->stats;
     }
 }
