@@ -7,6 +7,11 @@ use LaravelEnso\Logs\App\Services\ClearLog as Service;
 
 class ClearLog implements Action
 {
+    public function id()
+    {
+        return 'clearLog';
+    }
+
     public function handle()
     {
         (new Service('laravel.log'))->handle();
@@ -15,6 +20,11 @@ class ClearLog implements Action
     public function label(): string
     {
         return 'Log';
+    }
+
+    public function tooltip(): string
+    {
+        return 'this action will clear laravel log';
     }
 
     public function description(): string
@@ -30,5 +40,10 @@ class ClearLog implements Action
     public function confirmation(): bool
     {
         return true;
+    }
+
+    public function order(): int
+    {
+        return 0;
     }
 }

@@ -11,18 +11,18 @@ class ActionLog extends BaseSensor
         return $this->filter(Model::query())->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return __('number of actions');
+        return 'actions';
+    }
+
+    public function description(): ?string
+    {
+        return 'number of actions';
     }
 
     public function icon()
     {
         return ['fad', 'mouse-alt'];
-    }
-
-    public function class(): string
-    {
-        return '';
     }
 }

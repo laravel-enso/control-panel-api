@@ -11,19 +11,19 @@ class Disk extends BaseSensor
         return "{$this->freeDisk()} GB";
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return __('free disk');
+        return 'free disk';
+    }
+
+    public function description(): ?string
+    {
+        return 'free disk space in GigaBytes';
     }
 
     public function icon()
     {
         return ['fad', 'hdd'];
-    }
-
-    public function class(): string
-    {
-        return '';
     }
 
     private function freeDisk(): string

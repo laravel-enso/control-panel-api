@@ -12,9 +12,14 @@ class LogSize extends BaseSensor
         return "{$this->logSize()} MB";
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'size of log';
+    }
+
+    public function description(): ?string
+    {
+        return 'size of laravel log in MegaBytes';
     }
 
     public function icon()

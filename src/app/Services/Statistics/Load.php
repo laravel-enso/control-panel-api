@@ -11,9 +11,14 @@ class Load extends BaseSensor
         return "{$this->load()} %";
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'load of server';
+        return 'server load';
+    }
+
+    public function description(): ?string
+    {
+        return 'load of server (load / cpu count * 100)';
     }
 
     public function icon()
@@ -23,7 +28,7 @@ class Load extends BaseSensor
 
     private function load()
     {
-        $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?: 1);
+        $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?? 1);
 
         return Decimals::mul($div, 100, 0);
     }
@@ -35,6 +40,8 @@ class Load extends BaseSensor
                 return (int) shell_exec('cat /proc/cpuinfo | grep processor | wc -l');
             case 'Darwin':
                 return (int) shell_exec('sysctl -n hw.ncpu');
+            default:
+                return null;
         }
     }
 }

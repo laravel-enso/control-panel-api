@@ -9,7 +9,7 @@ class Status extends BaseSensor
         return 'Web';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'application status';
     }

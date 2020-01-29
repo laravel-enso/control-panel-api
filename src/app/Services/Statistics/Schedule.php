@@ -11,7 +11,7 @@ class Schedule extends BaseSensor
         return 'Schedule';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'schedule status';
     }

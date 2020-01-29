@@ -16,7 +16,7 @@ class Memory extends BaseSensor
         return '-';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'memory usage';
     }

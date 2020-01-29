@@ -11,7 +11,12 @@ class User extends BaseSensor
         return Model::count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'users';
+    }
+
+    public function description(): ?string
     {
         return 'number of users';
     }

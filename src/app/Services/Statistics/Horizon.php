@@ -13,9 +13,14 @@ class Horizon extends BaseSensor
         return 'Horizon';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'horizon status';
+    }
+
+    public function description(): ?string
+    {
+        return 'it can be running or paused or inactive!';
     }
 
     public function icon()

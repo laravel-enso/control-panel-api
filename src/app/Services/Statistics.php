@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services;
 
-use Illuminate\Support\Collection;
+use LaravelEnso\ControlPanelApi\App\DTOs\Group;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActionLog;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\ActiveUser;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\Disk;
@@ -16,6 +16,7 @@ use LaravelEnso\ControlPanelApi\App\Services\Statistics\Memory;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\MysqlVersion;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\NewUser;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\PhpVersion;
+use LaravelEnso\ControlPanelApi\App\Services\Statistics\ResponseTime;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\Schedule;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\ServerTime;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics\Session;
@@ -25,41 +26,48 @@ use LaravelEnso\ControlPanelApi\App\Services\Statistics\Version;
 
 class Statistics
 {
-    private array $stats = [
-        'Statuses' => [
-            Status::class, Schedule::class, Horizon::class,
-        ],
-        'Server' => [
-            Load::class, Memory::class, Disk::class,
-        ],
-        'Users' => [
-            NewUser::class, ActiveUser::class, User::class,
-        ],
-        'Version' => [
-            MysqlVersion::class, PhpVersion::class, Version::class,
-        ],
-        'Login' => [
-            Login::class, ActionLog::class, Session::class,
-        ],
-        'Jobs' => [
-            Job::class, FailedJob::class,
-        ],
-        'Extra' => [
-            LogSize::class, ServerTime::class,
-        ],
-    ];
+    private array $stats = [];
 
     public function register($registers)
     {
-        (new Collection(collect($registers)))
-            ->each(fn ($stats, $group) => $this->stats[$group] = [
-                ...($this->stats[$group] ?? []),
-                ...$stats,
-            ]);
+        $this->stats = [
+            ...$this->stats,
+            ...$registers,
+        ];
     }
 
     public function all()
     {
-        return $this->stats;
+        return [
+            ...$this->initStats(),
+            ...$this->stats,
+        ];
+    }
+
+    private function initStats(): array
+    {
+        return [
+            new Group('statuses', 'Statuses', [
+                Status::class, Schedule::class, Horizon::class,
+            ]),
+            new Group('server', 'Server', [
+                Load::class, Memory::class, Disk::class,
+            ]),
+            new Group('users', 'Users', [
+                NewUser::class, ActiveUser::class, User::class,
+            ]),
+            new Group('version', 'Version', [
+                MysqlVersion::class, PhpVersion::class, Version::class,
+            ]),
+            new Group('login', 'Login', [
+                Login::class, ActionLog::class, Session::class,
+            ]),
+            new Group('jobs', 'Jobs', [
+                Job::class, FailedJob::class,
+            ]),
+            new Group('extra', 'Extra', [
+                LogSize::class, ServerTime::class, ResponseTime::class,
+            ]),
+        ];
     }
 }

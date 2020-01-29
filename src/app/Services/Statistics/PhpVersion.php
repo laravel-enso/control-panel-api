@@ -9,9 +9,9 @@ class PhpVersion extends BaseSensor
         return PHP_VERSION;
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'version of php';
+        return 'php version';
     }
 
     public function icon()

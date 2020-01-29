@@ -11,9 +11,9 @@ class MysqlVersion extends BaseSensor
         return DB::select('select version() as version')[0]->version;
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'version of mysql';
+        return 'mysql version';
     }
 
     public function icon()

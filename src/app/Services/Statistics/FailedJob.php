@@ -14,7 +14,12 @@ class FailedJob extends BaseSensor
         )->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'failed jobs';
+    }
+
+    public function description(): ?string
     {
         return 'number of failed jobs';
     }
@@ -22,10 +27,5 @@ class FailedJob extends BaseSensor
     public function icon()
     {
         return ['fad', 'exclamation-circle'];
-    }
-
-    public function class(): string
-    {
-        return '';
     }
 }

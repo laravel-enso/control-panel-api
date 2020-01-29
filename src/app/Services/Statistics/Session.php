@@ -13,7 +13,12 @@ class Session extends BaseSensor
             ->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'sessions';
+    }
+
+    public function description(): ?string
     {
         return 'number of sessions';
     }

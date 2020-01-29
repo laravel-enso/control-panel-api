@@ -11,7 +11,7 @@ class ServerTime extends BaseSensor
         return Carbon::now()->format('H:i');
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'server time';
     }

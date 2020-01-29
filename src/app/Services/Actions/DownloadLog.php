@@ -6,6 +6,11 @@ use LaravelEnso\ControlPanelApi\App\Contracts\Action;
 
 class DownloadLog implements Action
 {
+    public function id()
+    {
+        return 'downloadLog';
+    }
+
     public function handle()
     {
         return [
@@ -21,6 +26,11 @@ class DownloadLog implements Action
         return 'Log';
     }
 
+    public function tooltip(): string
+    {
+        return 'download laravel log';
+    }
+
     public function description(): string
     {
         return 'download log';
@@ -34,5 +44,10 @@ class DownloadLog implements Action
     public function confirmation(): bool
     {
         return false;
+    }
+
+    public function order(): int
+    {
+        return 0;
     }
 }
