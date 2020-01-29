@@ -12,7 +12,7 @@ class ResponseTime extends BaseSensor
 
     public function value()
     {
-        return number_format($this->avgResponseTime()). ' ms';
+        return number_format($this->avgResponseTime()).' ms';
     }
 
     public function tooltip(): string

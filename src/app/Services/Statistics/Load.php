@@ -40,8 +40,6 @@ class Load extends BaseSensor
                 return (int) shell_exec('cat /proc/cpuinfo | grep processor | wc -l');
             case 'Darwin':
                 return (int) shell_exec('sysctl -n hw.ncpu');
-            default:
-                return null;
         }
     }
 }
