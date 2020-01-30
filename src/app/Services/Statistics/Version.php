@@ -20,4 +20,9 @@ class Version extends BaseSensor
     {
         return ['fab', 'enso'];
     }
+
+    public function order(): int
+    {
+        return 300;
+    }
 }

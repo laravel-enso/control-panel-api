@@ -20,4 +20,9 @@ class MysqlVersion extends BaseSensor
     {
         return ['fad', 'database'];
     }
+
+    public function order(): int
+    {
+        return 100;
+    }
 }

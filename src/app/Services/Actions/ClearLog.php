@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Actions;
 
-use LaravelEnso\ControlPanelApi\App\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 use LaravelEnso\Logs\App\Services\ClearLog as Service;
 
 class ClearLog implements Action
@@ -24,12 +24,12 @@ class ClearLog implements Action
 
     public function tooltip(): string
     {
-        return 'this action will clear laravel log';
+        return 'clear logs';
     }
 
     public function description(): string
     {
-        return 'clear logs';
+        return 'this action will clear laravel log';
     }
 
     public function icon()
@@ -44,6 +44,6 @@ class ClearLog implements Action
 
     public function order(): int
     {
-        return 0;
+        return 300;
     }
 }

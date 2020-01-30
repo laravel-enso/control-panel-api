@@ -26,6 +26,11 @@ class Load extends BaseSensor
         return ['fad', 'microchip'];
     }
 
+    public function order(): int
+    {
+        return 100;
+    }
+
     private function load()
     {
         $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?? 1);

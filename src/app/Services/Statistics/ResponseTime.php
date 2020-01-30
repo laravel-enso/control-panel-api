@@ -30,9 +30,11 @@ class ResponseTime extends BaseSensor
         return ['fad', 'stopwatch'];
     }
 
-    /**
-     * @return string
-     */
+    public function order(): int
+    {
+        return 300;
+    }
+
     private function avgResponseTime(): string
     {
         $avg = Decimals::div(Cache::get(static::TIME_KEY), Cache::get(static::REQUEST_KEY), 3);

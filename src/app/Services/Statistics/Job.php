@@ -28,4 +28,9 @@ class Job extends BaseSensor
     {
         return ['fad', 'hourglass-half'];
     }
+
+    public function order(): int
+    {
+        return 100;
+    }
 }

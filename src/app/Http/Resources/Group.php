@@ -3,6 +3,7 @@
 namespace LaravelEnso\ControlPanelApi\App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use LaravelEnso\Helpers\App\Classes\Obj;
 
@@ -20,7 +21,7 @@ class Group extends JsonResource
 
     private function sensors($request)
     {
-        return $this->statistics()
+        return (new Collection($this->statistics()))
             ->map(fn ($stat) => App::make($stat, [
                 'params' => new Obj($request->all()),
             ]));

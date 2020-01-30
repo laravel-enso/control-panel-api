@@ -25,4 +25,9 @@ class NewUser extends BaseSensor
     {
         return ['fad', 'user-plus'];
     }
+
+    public function order(): int
+    {
+        return 100;
+    }
 }

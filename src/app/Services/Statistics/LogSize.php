@@ -27,6 +27,11 @@ class LogSize extends BaseSensor
         return ['fad', 'terminal'];
     }
 
+    public function order(): int
+    {
+        return 100;
+    }
+
     private function logSize(): string
     {
         $size = File::size(storage_path('logs/laravel.log'));

@@ -28,4 +28,9 @@ class FailedJob extends BaseSensor
     {
         return ['fad', 'exclamation-circle'];
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }

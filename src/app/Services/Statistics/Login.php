@@ -25,4 +25,9 @@ class Login extends BaseSensor
     {
         return ['fad', 'sign-in-alt'];
     }
+
+    public function order(): int
+    {
+        return 100;
+    }
 }

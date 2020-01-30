@@ -25,4 +25,9 @@ class ActiveUser extends BaseSensor
     {
         return ['fad', 'user-friends'];
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }

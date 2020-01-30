@@ -26,6 +26,11 @@ class Disk extends BaseSensor
         return ['fad', 'hdd'];
     }
 
+    public function order(): int
+    {
+        return 300;
+    }
+
     private function freeDisk(): string
     {
         return Decimals::div(disk_free_space('/'), 1024 ** 3);

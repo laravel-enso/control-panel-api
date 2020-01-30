@@ -27,4 +27,9 @@ class Status extends BaseSensor
             ? 'has-text-warning'
             : 'has-text-success';
     }
+
+    public function order(): int
+    {
+        return 100;
+    }
 }

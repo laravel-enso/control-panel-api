@@ -25,4 +25,9 @@ class ActionLog extends BaseSensor
     {
         return ['fad', 'mouse-alt'];
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }

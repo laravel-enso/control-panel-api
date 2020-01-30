@@ -47,6 +47,11 @@ class Horizon extends BaseSensor
         }
     }
 
+    public function order(): int
+    {
+        return 300;
+    }
+
     private function status()
     {
         $masters = App::make(MasterSupervisorRepository::class)->all();

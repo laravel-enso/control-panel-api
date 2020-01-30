@@ -26,6 +26,11 @@ class Memory extends BaseSensor
         return ['fad', 'memory'];
     }
 
+    public function order(): int
+    {
+        return 200;
+    }
+
     private function memoryUsage()
     {
         $free = (string) trim(shell_exec('free'));

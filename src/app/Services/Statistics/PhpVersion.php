@@ -18,4 +18,9 @@ class PhpVersion extends BaseSensor
     {
         return ['fab', 'php'];
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }

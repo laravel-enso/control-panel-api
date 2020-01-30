@@ -4,10 +4,10 @@ namespace LaravelEnso\ControlPanelApi\App\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use LaravelEnso\ControlPanelApi\App\Contracts\Action;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\ClearLog;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\DownloadLog;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\Maintenance;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 
 class Actions
 {

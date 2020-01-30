@@ -26,7 +26,10 @@
     "require": {
         "laravel-enso/core": "4.7.*",
         "laravel-enso/enums": "1.2.*",
-        "laravel-enso/helpers": "1.15.*"
+        "laravel-enso/helpers": "1.15.*",
+        "laravel-enso/logs": "3.2.*",
+        "laravel-enso/action-logger": "2.4.*",
+        "laravel-enso/control-panel-common": "0.9.*"
     },
     "autoload": {
         "psr-4": {

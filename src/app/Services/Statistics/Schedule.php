@@ -29,4 +29,9 @@ class Schedule extends BaseSensor
             ? 'has-text-success'
             : 'has-text-danger';
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }

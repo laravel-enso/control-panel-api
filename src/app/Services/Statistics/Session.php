@@ -27,4 +27,9 @@ class Session extends BaseSensor
     {
         return ['fad', 'link'];
     }
+
+    public function order(): int
+    {
+        return 300;
+    }
 }

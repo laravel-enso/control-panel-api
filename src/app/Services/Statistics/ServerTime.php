@@ -20,4 +20,9 @@ class ServerTime extends BaseSensor
     {
         return ['fad', 'clock'];
     }
+
+    public function order(): int
+    {
+        return 200;
+    }
 }
