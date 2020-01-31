@@ -11,7 +11,12 @@ class User extends BaseSensor
         return Model::count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'users';
+    }
+
+    public function description(): ?string
     {
         return 'number of users';
     }
@@ -19,5 +24,10 @@ class User extends BaseSensor
     public function icon()
     {
         return ['fad', 'users'];
+    }
+
+    public function order(): int
+    {
+        return 300;
     }
 }

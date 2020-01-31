@@ -11,9 +11,14 @@ class Load extends BaseSensor
         return "{$this->load()} %";
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'load of server';
+        return 'server load';
+    }
+
+    public function description(): ?string
+    {
+        return 'load of server (load / cpu count * 100)';
     }
 
     public function icon()
@@ -21,9 +26,14 @@ class Load extends BaseSensor
         return ['fad', 'microchip'];
     }
 
+    public function order(): int
+    {
+        return 100;
+    }
+
     private function load()
     {
-        $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?: 1);
+        $div = Decimals::div(sys_getloadavg()[0], $this->cpus() ?? 1);
 
         return Decimals::mul($div, 100, 0);
     }

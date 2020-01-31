@@ -9,7 +9,7 @@ class Status extends BaseSensor
         return 'Web';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'application status';
     }
@@ -26,5 +26,10 @@ class Status extends BaseSensor
         return app()->isDownForMaintenance()
             ? 'has-text-warning'
             : 'has-text-success';
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }

@@ -11,7 +11,12 @@ class ActiveUser extends BaseSensor
         return User::active()->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'active users';
+    }
+
+    public function description(): ?string
     {
         return 'number of active users';
     }
@@ -21,8 +26,8 @@ class ActiveUser extends BaseSensor
         return ['fad', 'user-friends'];
     }
 
-    public function class(): string
+    public function order(): int
     {
-        return '';
+        return 200;
     }
 }

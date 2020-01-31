@@ -11,7 +11,12 @@ class NewUser extends BaseSensor
         return $this->filter(User::query())->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'new users';
+    }
+
+    public function description(): ?string
     {
         return 'number of new users';
     }
@@ -19,5 +24,10 @@ class NewUser extends BaseSensor
     public function icon()
     {
         return ['fad', 'user-plus'];
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }

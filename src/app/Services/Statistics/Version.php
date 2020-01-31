@@ -11,13 +11,18 @@ class Version extends BaseSensor
         return Config::get('enso.config.version');
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'version of application';
+        return 'app version';
     }
 
     public function icon()
     {
         return ['fab', 'enso'];
+    }
+
+    public function order(): int
+    {
+        return 300;
     }
 }

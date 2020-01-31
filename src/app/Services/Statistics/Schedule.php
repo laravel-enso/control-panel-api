@@ -11,7 +11,7 @@ class Schedule extends BaseSensor
         return 'Schedule';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'schedule status';
     }
@@ -28,5 +28,10 @@ class Schedule extends BaseSensor
         return Cache::has('schedule_monitor')
             ? 'has-text-success'
             : 'has-text-danger';
+    }
+
+    public function order(): int
+    {
+        return 200;
     }
 }

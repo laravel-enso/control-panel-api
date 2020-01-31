@@ -2,14 +2,14 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use LaravelEnso\ControlPanelApi\App\Http\Responses\Statistics as Response;
+use LaravelEnso\ControlPanelApi\App\Facades\Statistics as Facade;
+use LaravelEnso\ControlPanelCommon\App\Http\Resources\Group;
 
 class Statistics extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        return new Response();
+        return Group::collection(Facade::all());
     }
 }

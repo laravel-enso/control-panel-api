@@ -2,10 +2,15 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Actions;
 
-use LaravelEnso\ControlPanelApi\App\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 
 class DownloadLog implements Action
 {
+    public function id()
+    {
+        return 'downloadLog';
+    }
+
     public function handle()
     {
         return [
@@ -21,9 +26,14 @@ class DownloadLog implements Action
         return 'Log';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'download log';
+    }
+
+    public function description(): string
+    {
+        return 'download laravel log';
     }
 
     public function icon()
@@ -34,5 +44,10 @@ class DownloadLog implements Action
     public function confirmation(): bool
     {
         return false;
+    }
+
+    public function order(): int
+    {
+        return 200;
     }
 }

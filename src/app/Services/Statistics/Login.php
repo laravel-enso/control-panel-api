@@ -11,7 +11,12 @@ class Login extends BaseSensor
         return $this->filter(Model::query())->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'logins';
+    }
+
+    public function description(): ?string
     {
         return 'number of logins';
     }
@@ -19,5 +24,10 @@ class Login extends BaseSensor
     public function icon()
     {
         return ['fad', 'sign-in-alt'];
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }

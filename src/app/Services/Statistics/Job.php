@@ -14,7 +14,12 @@ class Job extends BaseSensor
             ->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
+    {
+        return 'jobs';
+    }
+
+    public function description(): ?string
     {
         return 'number of pending jobs';
     }
@@ -24,8 +29,8 @@ class Job extends BaseSensor
         return ['fad', 'hourglass-half'];
     }
 
-    public function class(): string
+    public function order(): int
     {
-        return '';
+        return 100;
     }
 }

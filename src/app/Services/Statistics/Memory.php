@@ -16,7 +16,7 @@ class Memory extends BaseSensor
         return '-';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'memory usage';
     }
@@ -24,6 +24,11 @@ class Memory extends BaseSensor
     public function icon()
     {
         return ['fad', 'memory'];
+    }
+
+    public function order(): int
+    {
+        return 200;
     }
 
     private function memoryUsage()

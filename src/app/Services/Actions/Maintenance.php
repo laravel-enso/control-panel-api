@@ -3,10 +3,15 @@
 namespace LaravelEnso\ControlPanelApi\App\Services\Actions;
 
 use Illuminate\Support\Facades\Artisan;
-use LaravelEnso\ControlPanelApi\App\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 
 class Maintenance implements Action
 {
+    public function id()
+    {
+        return 'maintenance';
+    }
+
     public function handle()
     {
         return app()->isDownForMaintenance()
@@ -19,9 +24,14 @@ class Maintenance implements Action
         return 'App';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'toggle maintenance';
+    }
+
+    public function description(): string
+    {
+        return 'this action will toggle maintenance mode.';
     }
 
     public function icon()
@@ -32,5 +42,10 @@ class Maintenance implements Action
     public function confirmation(): bool
     {
         return true;
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }
