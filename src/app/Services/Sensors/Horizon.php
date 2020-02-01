@@ -1,32 +1,32 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
-class Horizon extends BaseSensor
+class Horizon extends Sensor
 {
     public function value()
     {
         return 'Horizon';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'horizon status';
     }
 
-    public function icon()
+    public function icon(): array
     {
         switch ($this->status()) {
             case 'running':
-                return 'check-circle';
+                return ['fad', 'check-circle'];
             case 'paused':
-                return 'pause-circle';
+                return ['fad', 'pause-circle'];
             default:
-                return 'times-circle';
+                return ['fad', 'times-circle'];
         }
     }
 
@@ -40,6 +40,11 @@ class Horizon extends BaseSensor
             default:
                 return 'has-text-danger';
         }
+    }
+
+    public function order(): int
+    {
+        return 300;
     }
 
     private function status()

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\App;
 use Laravel\Horizon\Contracts\JobRepository;
 
-class Job extends BaseSensor
+class PendingJobs extends Sensor
 {
     public function value()
     {
@@ -14,18 +14,18 @@ class Job extends BaseSensor
             ->count();
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'number of pending jobs';
+        return 'pending jobs';
     }
 
-    public function icon()
+    public function icon(): array
     {
-        return 'hourglass-half';
+        return ['fad', 'hourglass-half'];
     }
 
-    public function class(): string
+    public function order(): int
     {
-        return '';
+        return 100;
     }
 }

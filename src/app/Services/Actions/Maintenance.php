@@ -2,16 +2,26 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Actions;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
-use LaravelEnso\ControlPanelApi\App\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 
 class Maintenance implements Action
 {
+    public function id()
+    {
+        return 'maintenance';
+    }
+
     public function handle()
     {
-        return app()->isDownForMaintenance()
-            ? Artisan::call('up')
-            : Artisan::call('down');
+        $action = App::isDownForMaintenance() ? 'up' : 'down';
+
+        Artisan::call($action);
+
+        return App::isDownForMaintenance()
+            ? ['message' => 'Application is in maintenance mode']
+            : ['message' => 'Application is in production mode'];
     }
 
     public function label(): string
@@ -19,18 +29,23 @@ class Maintenance implements Action
         return 'App';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
-        return 'toggle maintenance';
+        return "this action toggles the application's maintenance mode";
     }
 
-    public function icon()
+    public function icon(): array
     {
-        return 'power-off';
+        return ['fad', 'power-off'];
     }
 
     public function confirmation(): bool
     {
         return true;
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }

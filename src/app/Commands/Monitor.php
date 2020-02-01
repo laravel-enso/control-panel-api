@@ -14,6 +14,6 @@ class Monitor extends Command
 
     public function handle()
     {
-        Cache::put('schedule_monitor', Carbon::now(), Carbon::now()->addMinutes(5));
+        Cache::put('scheduler_monitor', Carbon::now(), Carbon::now()->addMinutes(5));
     }
 }

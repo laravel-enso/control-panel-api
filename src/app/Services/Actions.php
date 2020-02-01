@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\App;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\ClearLog;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\DownloadLog;
 use LaravelEnso\ControlPanelApi\App\Services\Actions\Maintenance;
+use LaravelEnso\ControlPanelCommon\App\Contracts\Action;
 
 class Actions
 {
     private array $actions = [
-        'clearLog' => ClearLog::class,
-        'downloadLog' => DownloadLog::class,
-        'maintenance' => Maintenance::class,
+        ClearLog::class,
+        DownloadLog::class,
+        Maintenance::class,
     ];
 
     public function register($registers)
@@ -27,8 +28,9 @@ class Actions
             ->map(fn ($action) => App::make($action));
     }
 
-    public function get($action)
+    public function get($id)
     {
-        return App::make($this->actions[$action]);
+        return $this->all()
+            ->first(fn (Action $action) => $action->id() === $id);
     }
 }

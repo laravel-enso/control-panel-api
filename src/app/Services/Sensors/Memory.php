@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class Memory extends BaseSensor
+class Memory extends Sensor
 {
     public function value()
     {
@@ -13,28 +13,32 @@ class Memory extends BaseSensor
             return "{$this->memoryUsage()} %";
         }
 
-        return '-';
+        return 'N/A';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'memory usage';
     }
 
-    public function icon()
+    public function icon(): array
     {
-        return 'memory';
+        return ['fad', 'memory'];
+    }
+
+    public function order(): int
+    {
+        return 200;
     }
 
     private function memoryUsage()
     {
         $free = (string) trim(shell_exec('free'));
+
         $mem = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
             ->filter()
             ->values();
 
-        return Decimals::mul(
-            Decimals::div($mem[2], $mem[1]), 100, 0
-        );
+        return (int) Decimals::mul(Decimals::div($mem[2], $mem[1]), 100);
     }
 }

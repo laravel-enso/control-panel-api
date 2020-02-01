@@ -1,24 +1,24 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
-class Status extends BaseSensor
+class Web extends Sensor
 {
     public function value()
     {
         return 'Web';
     }
 
-    public function description(): string
+    public function tooltip(): string
     {
         return 'application status';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return app()->isDownForMaintenance()
-            ? 'pause-circle'
-            : 'check-circle';
+            ? ['fad', 'pause-circle']
+            : ['fad', 'check-circle'];
     }
 
     public function class(): string
@@ -26,5 +26,10 @@ class Status extends BaseSensor
         return app()->isDownForMaintenance()
             ? 'has-text-warning'
             : 'has-text-success';
+    }
+
+    public function order(): int
+    {
+        return 100;
     }
 }
