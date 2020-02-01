@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use LaravelEnso\Core\App\Models\User;
 
-class NewUser extends BaseSensor
+class NewUsers extends Sensor
 {
     public function value()
     {
@@ -16,12 +16,7 @@ class NewUser extends BaseSensor
         return 'new users';
     }
 
-    public function description(): ?string
-    {
-        return 'number of new users';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'user-plus'];
     }

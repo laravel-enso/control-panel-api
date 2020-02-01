@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Carbon\Carbon;
 
-class ServerTime extends BaseSensor
+class ServerTime extends Sensor
 {
     public function value()
     {
@@ -16,13 +16,13 @@ class ServerTime extends BaseSensor
         return 'server time';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'clock'];
     }
 
     public function order(): int
     {
-        return 200;
+        return 500;
     }
 }

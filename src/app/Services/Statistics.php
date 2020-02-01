@@ -4,32 +4,27 @@ namespace LaravelEnso\ControlPanelApi\App\Services;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\Extra;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\Job;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\Login;
+use LaravelEnso\ControlPanelApi\App\Services\Groups\Activity;
+use LaravelEnso\ControlPanelApi\App\Services\Groups\Jobs;
 use LaravelEnso\ControlPanelApi\App\Services\Groups\Server;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\Status;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\User;
-use LaravelEnso\ControlPanelApi\App\Services\Groups\Version;
+use LaravelEnso\ControlPanelApi\App\Services\Groups\Services;
+use LaravelEnso\ControlPanelApi\App\Services\Groups\Users;
+use LaravelEnso\ControlPanelApi\App\Services\Groups\Versions;
 
 class Statistics
 {
     private array $stats = [
-        Status::class,
+        Services::class,
         Server::class,
-        User::class,
-        Version::class,
-        Login::class,
-        Job::class,
-        Extra::class,
+        Users::class,
+        Versions::class,
+        Activity::class,
+        Jobs::class,
     ];
 
     public function register($registers)
     {
-        $this->stats = [
-            ...$this->stats,
-            ...$registers,
-        ];
+        $this->stats = [...$this->stats, ...$registers];
     }
 
     public function all()

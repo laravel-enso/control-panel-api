@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\DB;
 
-class Session extends BaseSensor
+class Sessions extends Sensor
 {
     public function value()
     {
@@ -15,15 +15,10 @@ class Session extends BaseSensor
 
     public function tooltip(): string
     {
-        return 'sessions';
+        return 'session count';
     }
 
-    public function description(): ?string
-    {
-        return 'number of sessions';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'link'];
     }

@@ -5,7 +5,7 @@ namespace LaravelEnso\ControlPanelApi;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
 use LaravelEnso\ControlPanelApi\App\Commands\Monitor;
-use LaravelEnso\ControlPanelApi\App\Http\Middleware\ResponseTime;
+use LaravelEnso\ControlPanelApi\App\Http\Middleware\ResponseMonitor;
 use LaravelEnso\ControlPanelApi\App\Services\Actions;
 use LaravelEnso\ControlPanelApi\App\Services\Statistics;
 
@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
     private function middleware(): self
     {
         $this->app['router']
-            ->aliasMiddleware('response-time', ResponseTime::class);
+            ->aliasMiddleware('response-monitor', ResponseMonitor::class);
 
         return $this;
     }

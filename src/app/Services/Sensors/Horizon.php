@@ -1,12 +1,12 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\App;
 use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
-class Horizon extends BaseSensor
+class Horizon extends Sensor
 {
     public function value()
     {
@@ -18,12 +18,7 @@ class Horizon extends BaseSensor
         return 'horizon status';
     }
 
-    public function description(): ?string
-    {
-        return 'it can be running or paused or inactive!';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         switch ($this->status()) {
             case 'running':

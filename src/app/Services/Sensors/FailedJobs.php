@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\DB;
 
-class FailedJob extends BaseSensor
+class FailedJobs extends Sensor
 {
     public function value()
     {
@@ -19,12 +19,7 @@ class FailedJob extends BaseSensor
         return 'failed jobs';
     }
 
-    public function description(): ?string
-    {
-        return 'number of failed jobs';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'exclamation-circle'];
     }

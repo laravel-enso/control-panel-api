@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
-class Status extends BaseSensor
+class Web extends Sensor
 {
     public function value()
     {
@@ -14,7 +14,7 @@ class Status extends BaseSensor
         return 'application status';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return app()->isDownForMaintenance()
             ? ['fad', 'pause-circle']

@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\File;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 
-class LogSize extends BaseSensor
+class LogSize extends Sensor
 {
     public function value()
     {
@@ -14,22 +14,17 @@ class LogSize extends BaseSensor
 
     public function tooltip(): string
     {
-        return 'size of log';
+        return "size of the application's log";
     }
 
-    public function description(): ?string
-    {
-        return 'size of laravel log in MegaBytes';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'terminal'];
     }
 
     public function order(): int
     {
-        return 100;
+        return 400;
     }
 
     private function logSize(): string

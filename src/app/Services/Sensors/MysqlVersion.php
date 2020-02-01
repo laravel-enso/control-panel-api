@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\DB;
 
-class MysqlVersion extends BaseSensor
+class MysqlVersion extends Sensor
 {
     public function value()
     {
@@ -16,13 +16,13 @@ class MysqlVersion extends BaseSensor
         return 'mysql version';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'database'];
     }
 
     public function order(): int
     {
-        return 100;
+        return 300;
     }
 }

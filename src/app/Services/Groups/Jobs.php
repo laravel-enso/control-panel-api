@@ -2,26 +2,26 @@
 
 namespace LaravelEnso\ControlPanelApi\App\Services\Groups;
 
-use LaravelEnso\ControlPanelApi\App\Services\Statistics\FailedJob;
-use LaravelEnso\ControlPanelApi\App\Services\Statistics\Job as Stat;
+use LaravelEnso\ControlPanelApi\App\Services\Sensors\FailedJobs;
+use LaravelEnso\ControlPanelApi\App\Services\Sensors\PendingJobs;
 use LaravelEnso\ControlPanelCommon\App\Contracts\Group;
 
-class Job implements Group
+class Jobs implements Group
 {
     public function id()
     {
-        return 'job';
+        return 'jobs';
     }
 
     public function label(): string
     {
-        return 'Job';
+        return 'Jobs';
     }
 
-    public function statistics(): array
+    public function sensors(): array
     {
         return [
-            Stat::class, FailedJob::class,
+            PendingJobs::class, FailedJobs::class,
         ];
     }
 

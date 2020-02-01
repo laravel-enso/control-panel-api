@@ -24,15 +24,10 @@ class ClearLog implements Action
 
     public function tooltip(): string
     {
-        return 'clear logs';
+        return "this action clears the applications's log";
     }
 
-    public function description(): string
-    {
-        return 'this action will clear laravel log';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'trash-alt'];
     }

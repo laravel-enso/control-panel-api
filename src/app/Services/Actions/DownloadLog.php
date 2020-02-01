@@ -28,15 +28,10 @@ class DownloadLog implements Action
 
     public function tooltip(): string
     {
-        return 'download log';
+        return "this actions downloads the applications's log";
     }
 
-    public function description(): string
-    {
-        return 'download laravel log';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'download'];
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
-class PhpVersion extends BaseSensor
+class PhpVersion extends Sensor
 {
     public function value()
     {
@@ -14,7 +14,7 @@ class PhpVersion extends BaseSensor
         return 'php version';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return ['fab', 'php'];
     }

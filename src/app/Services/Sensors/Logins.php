@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use LaravelEnso\Core\App\Models\Login as Model;
 
-class Login extends BaseSensor
+class Logins extends Sensor
 {
     public function value()
     {
@@ -13,15 +13,10 @@ class Login extends BaseSensor
 
     public function tooltip(): string
     {
-        return 'logins';
+        return 'login count';
     }
 
-    public function description(): ?string
-    {
-        return 'number of logins';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'sign-in-alt'];
     }

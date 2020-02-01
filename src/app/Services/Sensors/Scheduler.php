@@ -1,31 +1,31 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\Cache;
 
-class Schedule extends BaseSensor
+class Scheduler extends Sensor
 {
     public function value()
     {
-        return 'Schedule';
+        return 'Scheduler';
     }
 
     public function tooltip(): string
     {
-        return 'schedule status';
+        return 'scheduler status';
     }
 
-    public function icon()
+    public function icon(): array
     {
-        return Cache::has('schedule_monitor')
+        return Cache::has('scheduler_monitor')
             ? ['fad', 'check-circle']
             : ['fad', 'times-circle'];
     }
 
     public function class(): string
     {
-        return Cache::has('schedule_monitor')
+        return Cache::has('scheduler_monitor')
             ? 'has-text-success'
             : 'has-text-danger';
     }

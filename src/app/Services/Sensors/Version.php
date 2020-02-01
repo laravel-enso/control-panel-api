@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\Config;
 
-class Version extends BaseSensor
+class Version extends Sensor
 {
     public function value()
     {
@@ -13,16 +13,16 @@ class Version extends BaseSensor
 
     public function tooltip(): string
     {
-        return 'app version';
+        return 'enso version';
     }
 
-    public function icon()
+    public function icon(): array
     {
         return ['fab', 'enso'];
     }
 
     public function order(): int
     {
-        return 300;
+        return 100;
     }
 }

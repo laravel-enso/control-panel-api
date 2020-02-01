@@ -1,10 +1,10 @@
 <?php
 
-namespace LaravelEnso\ControlPanelApi\App\Services\Statistics;
+namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use LaravelEnso\ActionLogger\App\Models\ActionLog as Model;
 
-class ActionLog extends BaseSensor
+class Requests extends Sensor
 {
     public function value()
     {
@@ -13,15 +13,10 @@ class ActionLog extends BaseSensor
 
     public function tooltip(): string
     {
-        return 'actions';
+        return 'requests count';
     }
 
-    public function description(): ?string
-    {
-        return 'number of actions';
-    }
-
-    public function icon()
+    public function icon(): array
     {
         return ['fad', 'mouse-alt'];
     }
