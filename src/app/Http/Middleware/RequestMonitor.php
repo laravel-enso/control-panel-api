@@ -4,9 +4,9 @@ namespace LaravelEnso\ControlPanelApi\App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Cache;
-use LaravelEnso\ControlPanelApi\App\Services\Sensors\ResponseTime as Sensor;
+use LaravelEnso\ControlPanelApi\App\Services\Sensors\RequestMonitor as Sensor;
 
-class ResponseMonitor
+class RequestMonitor
 {
     public function handle($request, Closure $next)
     {
@@ -17,7 +17,7 @@ class ResponseMonitor
     {
         $time = microtime(true) - LARAVEL_START;
 
-        $hits = Cache::get(Sensor::ResponseTimeMonitor, []);
+        $hits = Cache::get(Sensor::RequestMonitor, []);
 
         if (count($hits) > 1000) {
             $hits = array_slice($hits, -1000);
@@ -25,7 +25,7 @@ class ResponseMonitor
 
         $hits[] = $time * 1000;
 
-        Cache::put(Sensor::ResponseTimeMonitor, $hits, now()->addHours(1));
+        Cache::put(Sensor::RequestMonitor, $hits, now()->addHours(1));
 
         return $response;
     }

@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Cache;
 use LaravelEnso\Helpers\App\Classes\Decimals;
 use LaravelEnso\Helpers\App\Classes\Obj;
 
-class ResponseTime extends Sensor
+class RequestMonitor extends Sensor
 {
-    public const ResponseTimeMonitor = 'control-panel-api:responseTimeMonitor';
+    public const RequestMonitor = 'control-panel-api:requestMonitor';
 
     private array $hits;
 
@@ -16,7 +16,7 @@ class ResponseTime extends Sensor
     {
         parent::__construct($obj);
 
-        $this->hits = Cache::get(static::ResponseTimeMonitor, []);
+        $this->hits = Cache::get(static::RequestMonitor, []);
     }
 
     public function value()

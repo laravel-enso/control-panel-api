@@ -6,7 +6,7 @@ use LaravelEnso\ControlPanelApi\App\Services\Sensors\Disk;
 use LaravelEnso\ControlPanelApi\App\Services\Sensors\Load;
 use LaravelEnso\ControlPanelApi\App\Services\Sensors\LogSize;
 use LaravelEnso\ControlPanelApi\App\Services\Sensors\Memory;
-use LaravelEnso\ControlPanelApi\App\Services\Sensors\ResponseTime;
+use LaravelEnso\ControlPanelApi\App\Services\Sensors\RequestMonitor;
 use LaravelEnso\ControlPanelApi\App\Services\Sensors\ServerTime;
 use LaravelEnso\ControlPanelCommon\App\Contracts\Group;
 
@@ -26,7 +26,7 @@ class Server implements Group
     {
         return [
             Load::class, Memory::class, Disk::class,
-            LogSize::class, ServerTime::class, ResponseTime::class,
+            LogSize::class, ServerTime::class, RequestMonitor::class,
         ];
     }
 
