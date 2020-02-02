@@ -8,7 +8,9 @@ class MysqlVersion extends Sensor
 {
     public function value()
     {
-        return DB::select('select version() as version')[0]->version;
+        [$version] = explode('-', $this->dbVersion());
+
+        return $version;
     }
 
     public function tooltip(): string
@@ -24,5 +26,10 @@ class MysqlVersion extends Sensor
     public function order(): int
     {
         return 300;
+    }
+
+    private function dbVersion()
+    {
+        return DB::select('select version() as version')[0]->version;
     }
 }
