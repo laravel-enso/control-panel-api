@@ -28,6 +28,6 @@ class Users implements Group
 
     public function order(): int
     {
-        return 300;
+        return 400;
     }
 }

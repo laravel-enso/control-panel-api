@@ -28,6 +28,6 @@ class Versions implements Group
 
     public function order(): int
     {
-        return 400;
+        return 300;
     }
 }
