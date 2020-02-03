@@ -4,21 +4,24 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Collection;
 use LaravelEnso\Helpers\App\Classes\Decimals;
+use LaravelEnso\Helpers\App\Classes\DiskSize;
 
 class Memory extends Sensor
 {
+    private array $memory;
+
     public function value()
     {
-        if (PHP_OS === 'Linux') {
-            return "{$this->memoryUsage()} %";
-        }
-
-        return 'N/A';
+        return PHP_OS === 'Linux'
+            ? "{$this->usage()} %"
+            : 'N/A';
     }
 
     public function tooltip(): string
     {
-        return 'memory usage';
+        return PHP_OS === 'Linux'
+            ? "memory usage from a total of {$this->total()}"
+            : 'N/A';
     }
 
     public function icon(): array
@@ -31,14 +34,31 @@ class Memory extends Sensor
         return 200;
     }
 
-    private function memoryUsage()
+    private function usage()
     {
+        $div = Decimals::div($this->memory()[2], $this->memory()[1]);
+
+        return (int) Decimals::mul($div, 100);
+    }
+
+    private function total()
+    {
+        return DiskSize::forHumans($this->memory()[1]);
+    }
+
+    private function memory()
+    {
+        if (isset($this->memory)) {
+            return $this->memory;
+        }
+
         $free = (string) trim(shell_exec('free'));
 
-        $mem = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
+        $this->memory = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
             ->filter()
-            ->values();
+            ->values()
+            ->toArray();
 
-        return (int) Decimals::mul(Decimals::div($mem[2], $mem[1]), 100);
+        return $this->memory;
     }
 }

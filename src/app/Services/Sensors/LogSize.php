@@ -3,13 +3,13 @@
 namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Illuminate\Support\Facades\File;
-use LaravelEnso\Helpers\App\Classes\Decimals;
+use LaravelEnso\Helpers\App\Classes\DiskSize;
 
 class LogSize extends Sensor
 {
     public function value()
     {
-        return "{$this->logSize()} MB";
+        return DiskSize::forHumans($this->logSize());
     }
 
     public function tooltip(): string
@@ -29,8 +29,6 @@ class LogSize extends Sensor
 
     private function logSize(): string
     {
-        $size = File::size(storage_path('logs/laravel.log'));
-
-        return Decimals::div($size, 1024 * 1024);
+        return File::size(storage_path('logs/laravel.log'));
     }
 }

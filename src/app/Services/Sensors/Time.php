@@ -4,7 +4,7 @@ namespace LaravelEnso\ControlPanelApi\App\Services\Sensors;
 
 use Carbon\Carbon;
 
-class ServerTime extends Sensor
+class Time extends Sensor
 {
     public function value()
     {

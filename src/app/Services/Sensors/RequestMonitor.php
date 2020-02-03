@@ -28,7 +28,7 @@ class RequestMonitor extends Sensor
     {
         $count = count($this->hits);
 
-        return "average response time for {$count} requests in the last hour";
+        return "average response time for the last {$count} requests";
     }
 
     public function icon(): array
