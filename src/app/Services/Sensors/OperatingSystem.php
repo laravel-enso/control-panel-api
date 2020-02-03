@@ -30,8 +30,8 @@ class OperatingSystem extends Sensor
     {
         $output = shell_exec('lsb_release -a | grep Description');
 
-        $line = explode(':', $output);
+        $line = explode(' ', $output);
 
-        return trim($line[1]);
+        trim($line[1]);
     }
 }

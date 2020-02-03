@@ -8,7 +8,7 @@ use LaravelEnso\Helpers\App\Classes\DiskSize;
 
 class Memory extends Sensor
 {
-    private array $memory;
+    private Collection $memory;
 
     public function value()
     {
@@ -36,28 +36,28 @@ class Memory extends Sensor
 
     private function usage()
     {
-        $div = Decimals::div($this->memory()[2], $this->memory()[1]);
+        $div = Decimals::div($this->memory()->last(), $this->memory()->first());
 
         return (int) Decimals::mul($div, 100);
     }
 
     private function total()
     {
-        return DiskSize::forHumans($this->memory()[1]);
+        return DiskSize::forHumans($this->memory()->first());
     }
 
-    private function memory()
+    private function memory(): Collection
     {
         if (isset($this->memory)) {
             return $this->memory;
         }
 
-        $free = (string) trim(shell_exec('free'));
+        $memory = (string) trim(shell_exec('free | grep Mem'));
 
-        $this->memory = (new Collection(explode(' ', explode(PHP_EOL, $free)[1])))
+        $this->memory = (new Collection(explode(' ', $memory)))
             ->filter()
             ->values()
-            ->toArray();
+            ->splice(1, 2);
 
         return $this->memory;
     }
