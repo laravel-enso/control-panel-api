@@ -32,6 +32,6 @@ class OperatingSystem extends Sensor
 
         $line = explode(' ', $output);
 
-        trim($line[1]);
+        return trim($line[1]);
     }
 }
