@@ -16,7 +16,5 @@ Route::namespace('LaravelEnso\ControlPanelApi\App\Http\Controllers')
         Route::middleware(['signed', 'bindings'])
             ->prefix('api/controlPanelApi')
             ->as('api.controlPanelApi.')
-            ->group(function () {
-                Route::get('downloadLog', 'DownloadLog')->name('downloadLog');
-            });
+            ->group(fn () => Route::get('downloadLog', 'DownloadLog')->name('downloadLog'));
     });

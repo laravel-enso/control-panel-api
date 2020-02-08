@@ -27,10 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->commands(Monitor::class);
 
-        $this->app->booted(function () {
-            $schedule = $this->app->make(Schedule::class);
-            $schedule->command('enso:control-panel-api:monitor')->everyFiveMinutes();
-        });
+        $this->app->booted(fn () => $this->app->make(Schedule::class)
+            ->command('enso:control-panel-api:monitor')->everyFiveMinutes());
 
         return $this;
     }

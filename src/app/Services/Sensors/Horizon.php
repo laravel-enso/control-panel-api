@@ -55,8 +55,9 @@ class Horizon extends Sensor
             return 'inactive';
         }
 
-        return (new Collection($masters))->contains(function ($master) {
-            return $master->status === 'paused';
-        }) ? 'paused' : 'running';
+        return (new Collection($masters))
+            ->contains(fn ($master) => $master->status === 'paused')
+            ? 'paused'
+            : 'running';
     }
 }
