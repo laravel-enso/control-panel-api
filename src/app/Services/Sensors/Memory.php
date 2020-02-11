@@ -43,7 +43,7 @@ class Memory extends Sensor
 
     private function total()
     {
-        return DiskSize::forHumans($this->memory()->first());
+        return DiskSize::forHumans($this->memory()->first() * 1000);
     }
 
     private function memory(): Collection
