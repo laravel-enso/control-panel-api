@@ -15,7 +15,7 @@ class DownloadLog implements Action
     {
         return [
             'url' => url()->temporarySignedRoute(
-                'api.controlPanelApi.downloadLog',
+                'api.controlPanelApi.action.downloadLog',
                 now()->addSeconds(60)
             ),
         ];
