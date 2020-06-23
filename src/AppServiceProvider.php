@@ -20,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->middleware()
             ->command()
-            ->loadRoutesFrom(__DIR__.'/routes/api.php');
+            ->publish()
+            ->load();
     }
 
     private function command(): self
@@ -39,5 +40,20 @@ class AppServiceProvider extends ServiceProvider
             ->aliasMiddleware('request-monitor', RequestMonitor::class);
 
         return $this;
+    }
+
+    private function publish(): self
+    {
+        $this->publishes([
+            __DIR__.'/database/seeds' => database_path('seeds'),
+        ], ['control-panel-api-seeder', 'enso-seeders']);
+
+        return $this;
+    }
+
+    private function load()
+    {
+        $this ->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 }
