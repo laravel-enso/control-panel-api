@@ -20,6 +20,7 @@ class ControlPanelApiSeeder extends Seeder
             $this->user();
         });
     }
+
     public function user(): void
     {
         factory(User::class)->create([
