@@ -3,7 +3,7 @@
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use Illuminate\Support\Facades\File;
-use LaravelEnso\Helpers\Classes\DiskSize;
+use LaravelEnso\Helpers\Services\DiskSize;
 
 class LogSize extends Sensor
 {

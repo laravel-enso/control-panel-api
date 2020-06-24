@@ -3,8 +3,8 @@
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use Illuminate\Support\Collection;
-use LaravelEnso\Helpers\Classes\Decimals;
-use LaravelEnso\Helpers\Classes\DiskSize;
+use LaravelEnso\Helpers\Services\Decimals;
+use LaravelEnso\Helpers\Services\DiskSize;
 
 class Memory extends Sensor
 {

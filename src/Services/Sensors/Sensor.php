@@ -4,7 +4,7 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use Illuminate\Support\Str;
 use LaravelEnso\ControlPanelCommon\Contracts\Sensor as Contract;
-use LaravelEnso\Helpers\Classes\Obj;
+use LaravelEnso\Helpers\Services\Obj;
 use ReflectionClass;
 
 abstract class Sensor implements Contract

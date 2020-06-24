@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Helpers;
 
-use LaravelEnso\Helpers\Classes\Decimals;
+use LaravelEnso\Helpers\Services\Decimals;
 
 class Cpu
 {

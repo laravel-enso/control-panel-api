@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
-use LaravelEnso\Helpers\Classes\DiskSize;
+use LaravelEnso\Helpers\Services\DiskSize;
 
 class Disk extends Sensor
 {
