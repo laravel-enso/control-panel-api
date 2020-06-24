@@ -24,12 +24,12 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "4.8.*",
-        "laravel-enso/enums": "1.2.*",
-        "laravel-enso/helpers": "1.15.*",
-        "laravel-enso/logs": "3.2.*",
-        "laravel-enso/action-logger": "2.4.*",
-        "laravel-enso/control-panel-common": "1.0.*"
+        "laravel-enso/core": "^5.0",
+        "laravel-enso/enums": "^2.0",
+        "laravel-enso/helpers": "^2.0",
+        "laravel-enso/logs": "^4.0",
+        "laravel-enso/action-logger": "^3.0",
+        "laravel-enso/control-panel-common": "^2.0"
     },
     "autoload": {
         "psr-4": {

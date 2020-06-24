@@ -3,8 +3,8 @@
 namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\ControlPanelApi\App\Facades\Actions;
-use LaravelEnso\ControlPanelApi\App\Facades\Statistics;
+use LaravelEnso\ControlPanelApi\Facades\Actions;
+use LaravelEnso\ControlPanelApi\Facades\Statistics;
 
 abstract class ControlPanelServiceProvider extends ServiceProvider
 {

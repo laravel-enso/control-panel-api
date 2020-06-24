@@ -2,12 +2,12 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Core\App\Models\User;
-use LaravelEnso\Core\App\Models\UserGroup;
-use LaravelEnso\People\App\Enums\Titles;
-use LaravelEnso\People\App\Models\Person;
-use LaravelEnso\Permissions\App\Models\Permission;
-use LaravelEnso\Roles\App\Models\Role;
+use LaravelEnso\Core\Models\User;
+use LaravelEnso\Core\Models\UserGroup;
+use LaravelEnso\People\Enums\Titles;
+use LaravelEnso\People\Models\Person;
+use LaravelEnso\Permissions\Models\Permission;
+use LaravelEnso\Roles\Models\Role;
 
 class ControlPanelApiSeeder extends Seeder
 {

@@ -4,10 +4,10 @@ namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\ControlPanelApi\App\Commands\Monitor;
-use LaravelEnso\ControlPanelApi\App\Http\Middleware\RequestMonitor;
-use LaravelEnso\ControlPanelApi\App\Services\Actions;
-use LaravelEnso\ControlPanelApi\App\Services\Statistics;
+use LaravelEnso\ControlPanelApi\Commands\Monitor;
+use LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor;
+use LaravelEnso\ControlPanelApi\Services\Actions;
+use LaravelEnso\ControlPanelApi\Services\Statistics;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
     private function publish(): self
     {
         $this->publishes([
-            __DIR__.'/database/seeds' => database_path('seeds'),
+            __DIR__.'/../database/seeds' => database_path('seeds'),
         ], ['control-panel-api-seeder', 'enso-seeders']);
 
         return $this;
@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
     private function load()
     {
-        $this ->loadRoutesFrom(__DIR__.'/routes/api.php');
-        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
+        $this ->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 }
