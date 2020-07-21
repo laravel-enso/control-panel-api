@@ -56,7 +56,7 @@ class ControlPanelApiSeeder extends Seeder
         ]);
 
         $role->permissions()->sync(
-            Permission::where('name', 'like', 'api.controlPanelApi.%')->pluck('id')
+            Permission::where('name', 'like', 'apis.%')->pluck('id')
         );
 
         return $role;
