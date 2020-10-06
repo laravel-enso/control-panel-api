@@ -1,5 +1,7 @@
 <?php
 
+namespace LaravelEnso\ControlPanelApi\Database\Seeders;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Core\Enums\UserGroups;
@@ -24,7 +26,7 @@ class ControlPanelApiSeeder extends Seeder
 
     public function user(): void
     {
-        factory(User::class)->create([
+        User::factory()->create([
             'person_id' => $this->person()->id,
             'group_id' => UserGroup::find(UserGroups::Admin)->id,
             'email' => $this->person()->email,
@@ -36,7 +38,7 @@ class ControlPanelApiSeeder extends Seeder
 
     private function person()
     {
-        return $this->person ??= factory(Person::class)->create([
+        return $this->person ??= Person::factory()->create([
             'title' => Titles::Mr,
             'name' => 'Monitoring',
             'appellative' => 'Monitoring',
@@ -48,7 +50,7 @@ class ControlPanelApiSeeder extends Seeder
 
     private function role()
     {
-        $role = factory(Role::class)->create([
+        $role = Role::factory()->create([
             'menu_id' => null,
             'name' => 'monitoring',
             'display_name' => 'monitoring',
