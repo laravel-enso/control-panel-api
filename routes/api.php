@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use LaravelEnso\ControlPanelApi\Http\Controllers\Statistics;
-use LaravelEnso\ControlPanelApi\Http\Controllers\Actions;
 use LaravelEnso\ControlPanelApi\Http\Controllers\Action;
+use LaravelEnso\ControlPanelApi\Http\Controllers\Actions;
 use LaravelEnso\ControlPanelApi\Http\Controllers\DownloadLog;
+use LaravelEnso\ControlPanelApi\Http\Controllers\Statistics;
 
 Route::name('apis.controlPanel.')
     ->prefix('apis/controlPanel')
