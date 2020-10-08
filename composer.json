@@ -34,7 +34,7 @@
     "autoload": {
         "psr-4": {
             "LaravelEnso\\ControlPanelApi\\": "src/",
-            "LaravelEnso\\Core\\Database\\Seeders\\": "database/seeders/"
+            "LaravelEnso\\ControlPanelApi\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "extra": {
