@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "^5.0",
+        "laravel-enso/core": "^6.0",
         "laravel-enso/enums": "^2.0",
         "laravel-enso/helpers": "^2.0",
         "laravel-enso/logs": "^4.0",
@@ -33,7 +33,8 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelEnso\\ControlPanelApi\\": "src/"
+            "LaravelEnso\\ControlPanelApi\\": "src/",
+            "LaravelEnso\\Core\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "extra": {
