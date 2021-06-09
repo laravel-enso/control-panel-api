@@ -20,11 +20,9 @@ class Cpu
 
     private static function cpus()
     {
-        switch (PHP_OS) {
-            case 'Linux':
-                return (int) shell_exec('cat /proc/cpuinfo | grep processor | wc -l');
-            case 'Darwin':
-                return (int) shell_exec('sysctl -n hw.ncpu');
-        }
+        return match (PHP_OS) {
+            'Linux' => (int) shell_exec('cat /proc/cpuinfo | grep processor | wc -l'),
+            'Darwin' => (int) shell_exec('sysctl -n hw.ncpu'),
+        };
     }
 }

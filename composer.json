@@ -24,7 +24,7 @@
         }
     ],
     "require": {
-        "laravel-enso/core": "^6.0",
+        "laravel-enso/core": "^7.0",
         "laravel-enso/enums": "^2.0",
         "laravel-enso/helpers": "^2.0",
         "laravel-enso/logs": "^4.0",

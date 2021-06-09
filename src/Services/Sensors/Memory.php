@@ -54,10 +54,8 @@ class Memory extends Sensor
 
         $memory = (string) trim(shell_exec('free | grep Mem'));
 
-        $this->memory = (new Collection(explode(' ', $memory)))
-            ->filter()
-            ->values()
-            ->splice(1, 2);
+        $this->memory = Collection::wrap(explode(' ', $memory))
+            ->filter()->values()->splice(1, 2);
 
         return $this->memory;
     }

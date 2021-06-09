@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
-use LaravelEnso\Core\Models\User;
+use LaravelEnso\Users\Models\User;
 
 class NewUsers extends Sensor
 {

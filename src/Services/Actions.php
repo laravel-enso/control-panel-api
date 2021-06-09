@@ -24,7 +24,7 @@ class Actions
 
     public function all()
     {
-        return (new Collection($this->actions))
+        return Collection::wrap($this->actions)
             ->map(fn ($action) => App::make($action));
     }
 

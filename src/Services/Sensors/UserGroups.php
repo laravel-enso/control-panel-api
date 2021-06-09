@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
-use LaravelEnso\Core\Models\UserGroup;
+use LaravelEnso\UserGroups\Models\UserGroup;
 
 class UserGroups extends Sensor
 {

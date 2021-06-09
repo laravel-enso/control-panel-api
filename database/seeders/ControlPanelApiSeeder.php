@@ -5,12 +5,11 @@ namespace LaravelEnso\ControlPanelApi\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use LaravelEnso\Core\Enums\UserGroups;
-use LaravelEnso\Core\Models\User;
-use LaravelEnso\Core\Models\UserGroup;
-use LaravelEnso\People\Enums\Titles;
 use LaravelEnso\People\Models\Person;
 use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Models\Role;
+use LaravelEnso\UserGroups\Models\UserGroup;
+use LaravelEnso\Users\Models\User;
 
 class ControlPanelApiSeeder extends Seeder
 {
@@ -39,7 +38,6 @@ class ControlPanelApiSeeder extends Seeder
     private function person()
     {
         return $this->person ??= Person::factory()->create([
-            'title' => Titles::Mr,
             'name' => 'Monitoring',
             'appellative' => 'Monitoring',
             'email' => self::email,
