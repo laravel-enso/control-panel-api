@@ -4,10 +4,10 @@ namespace LaravelEnso\ControlPanelApi\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use LaravelEnso\Core\Enums\UserGroups;
 use LaravelEnso\People\Models\Person;
 use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Models\Role;
+use LaravelEnso\UserGroups\Enums\UserGroups;
 use LaravelEnso\UserGroups\Models\UserGroup;
 use LaravelEnso\Users\Models\User;
 
