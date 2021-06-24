@@ -55,7 +55,7 @@ class Horizon extends Sensor
             return 'inactive';
         }
 
-        return (Collection::wrap($masters)
+        return Collection::wrap($masters)
             ->contains(fn ($master) => $master->status === 'paused')
             ? 'paused'
             : 'running';
