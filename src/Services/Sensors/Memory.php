@@ -10,7 +10,7 @@ class Memory extends Sensor
 {
     private Collection $memory;
 
-    public function value()
+    public function value(): mixed
     {
         return PHP_OS === 'Linux'
             ? "{$this->usage()} %"
@@ -34,14 +34,14 @@ class Memory extends Sensor
         return 200;
     }
 
-    private function usage()
+    private function usage(): int
     {
         $div = Decimals::div($this->memory()->last(), $this->memory()->first());
 
         return (int) Decimals::mul($div, 100);
     }
 
-    private function total()
+    private function total(): string
     {
         return DiskSize::forHumans($this->memory()->first() * 1000);
     }

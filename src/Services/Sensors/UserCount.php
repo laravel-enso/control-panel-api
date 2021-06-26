@@ -6,7 +6,7 @@ use LaravelEnso\Users\Models\User;
 
 class UserCount extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         $stats = $this->stats();
 

@@ -2,19 +2,15 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Actions;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Action;
 use LaravelEnso\Logs\Services\ClearLog as Service;
 
-class ClearLog implements Action
+class ClearLog extends IdProvider implements Action
 {
-    public function id()
+    public function handle(): array
     {
-        return 'clearLog';
-    }
-
-    public function handle()
-    {
-        (new Service('laravel.log'))->handle();
+        return (new Service('laravel.log'))->handle();
     }
 
     public function label(): string

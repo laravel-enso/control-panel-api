@@ -6,7 +6,7 @@ use LaravelEnso\Helpers\Services\DiskSize;
 
 class Disk extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return DiskSize::forHumans(disk_free_space('/'));
     }

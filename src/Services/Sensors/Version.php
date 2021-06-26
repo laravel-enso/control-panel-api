@@ -2,13 +2,27 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
-use Illuminate\Support\Facades\Config;
+use LaravelEnso\Core\Services\Version as Service;
 
 class Version extends Sensor
 {
-    public function value()
+    private Service $version;
+
+    public function __construct()
     {
-        return Config::get('enso.config.version');
+        parent::__construct(...func_get_args());
+
+        $this->version = new Service();
+    }
+
+    public function class(): ?string
+    {
+        return $this->version->isOutdated() ? 'is-danger' : '';
+    }
+
+    public function value(): mixed
+    {
+        return $this->version->current();
     }
 
     public function tooltip(): string

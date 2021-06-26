@@ -6,12 +6,12 @@ use LaravelEnso\Helpers\Services\Decimals;
 
 class Cpu
 {
-    public static function count()
+    public static function count(): int
     {
         return max(self::cpus(), 1);
     }
 
-    public static function load()
+    public static function load(): string
     {
         $avg = Decimals::div(sys_getloadavg()[0], self::count());
 

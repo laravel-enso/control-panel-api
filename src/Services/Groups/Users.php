@@ -2,18 +2,14 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\NewUsers;
 use LaravelEnso\ControlPanelApi\Services\Sensors\UserCount;
 use LaravelEnso\ControlPanelApi\Services\Sensors\UserGroups;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
 
-class Users implements Group
+class Users extends IdProvider implements Group
 {
-    public function id()
-    {
-        return 'users';
-    }
-
     public function label(): string
     {
         return 'Users';

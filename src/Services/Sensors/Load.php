@@ -6,7 +6,7 @@ use LaravelEnso\ControlPanelApi\Services\Helpers\Cpu;
 
 class Load extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         $load = Cpu::load();
 

@@ -4,7 +4,7 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 class Web extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return 'Web';
     }
@@ -21,7 +21,7 @@ class Web extends Sensor
             : ['fad', 'check-circle'];
     }
 
-    public function class(): string
+    public function class(): ?string
     {
         return app()->isDownForMaintenance()
             ? 'has-text-warning'

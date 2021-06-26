@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class FailedJobs extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return $this->filter(
             DB::table('failed_jobs')->selectRaw('id'),

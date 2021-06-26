@@ -6,7 +6,7 @@ use LaravelEnso\ActionLogger\Models\ActionLog as Model;
 
 class Requests extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return $this->filter(Model::query())->count();
     }

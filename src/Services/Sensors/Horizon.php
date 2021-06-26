@@ -8,7 +8,7 @@ use Laravel\Horizon\Contracts\MasterSupervisorRepository;
 
 class Horizon extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return 'Horizon';
     }
@@ -20,26 +20,20 @@ class Horizon extends Sensor
 
     public function icon(): array
     {
-        switch ($this->status()) {
-            case 'running':
-                return ['fad', 'check-circle'];
-            case 'paused':
-                return ['fad', 'pause-circle'];
-            default:
-                return ['fad', 'times-circle'];
-        }
+        return match ($this->status()) {
+            'running' => ['fad', 'check-circle'],
+            'paused' => ['fad', 'pause-circle'],
+            default => ['fad', 'times-circle'],
+        };
     }
 
-    public function class(): string
+    public function class(): ?string
     {
-        switch ($this->status()) {
-            case 'running':
-                return 'has-text-success';
-            case 'paused':
-                return 'has-text-warning';
-            default:
-                return 'has-text-danger';
-        }
+        return match ($this->status()) {
+            'running' => 'has-text-success',
+            'paused' => 'has-text-warning',
+            default => 'has-text-danger',
+        };
     }
 
     public function order(): int
@@ -47,7 +41,7 @@ class Horizon extends Sensor
         return 300;
     }
 
-    private function status()
+    private function status(): string
     {
         $masters = App::make(MasterSupervisorRepository::class)->all();
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Sessions extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return DB::table('sessions')
             ->whereNotNull('user_id')
@@ -31,7 +31,7 @@ class Sessions extends Sensor
         return 300;
     }
 
-    private function limit()
+    private function limit(): string
     {
         $lifetime = Config::get('session.lifetime');
 

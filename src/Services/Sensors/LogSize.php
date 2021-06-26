@@ -7,7 +7,7 @@ use LaravelEnso\Helpers\Services\DiskSize;
 
 class LogSize extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return DiskSize::forHumans($this->logSize());
     }

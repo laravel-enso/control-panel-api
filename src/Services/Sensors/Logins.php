@@ -6,7 +6,7 @@ use LaravelEnso\Core\Models\Login as Model;
 
 class Logins extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return $this->filter(Model::query())->count();
     }

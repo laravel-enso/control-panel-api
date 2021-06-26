@@ -2,18 +2,14 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Logins;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Requests;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Sessions;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
 
-class Activity implements Group
+class Activity extends IdProvider implements Group
 {
-    public function id()
-    {
-        return 'activity';
-    }
-
     public function label(): string
     {
         return 'Activity';

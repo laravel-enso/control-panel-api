@@ -4,7 +4,7 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 class PhpVersion extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return PHP_VERSION;
     }

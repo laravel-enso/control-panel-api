@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class MysqlVersion extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         [$version] = explode('-', $this->dbVersion());
 
@@ -28,7 +28,7 @@ class MysqlVersion extends Sensor
         return 300;
     }
 
-    private function dbVersion()
+    private function dbVersion(): string
     {
         return DB::select('select version() as version')[0]->version;
     }

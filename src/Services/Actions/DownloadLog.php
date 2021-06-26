@@ -2,21 +2,18 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Actions;
 
+use Carbon\Carbon;
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Action;
 
-class DownloadLog implements Action
+class DownloadLog extends IdProvider implements Action
 {
-    public function id()
-    {
-        return 'downloadLog';
-    }
-
-    public function handle()
+    public function handle(): array
     {
         return [
             'url' => url()->temporarySignedRoute(
                 'apis.controlPanel.action.downloadLog',
-                now()->addSeconds(60)
+                Carbon::now()->addSeconds(60)
             ),
         ];
     }

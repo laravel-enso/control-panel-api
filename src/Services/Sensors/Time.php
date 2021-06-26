@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 class Time extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return Carbon::now()->format('H:i');
     }

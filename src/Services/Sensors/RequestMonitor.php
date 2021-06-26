@@ -4,7 +4,6 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use Illuminate\Support\Facades\Cache;
 use LaravelEnso\Helpers\Services\Decimals;
-use LaravelEnso\Helpers\Services\Obj;
 
 class RequestMonitor extends Sensor
 {
@@ -12,14 +11,14 @@ class RequestMonitor extends Sensor
 
     private array $hits;
 
-    public function __construct(Obj $obj)
+    public function __construct()
     {
-        parent::__construct($obj);
+        parent::__construct(...func_get_args());
 
         $this->hits = Cache::get(static::RequestMonitor, []);
     }
 
-    public function value()
+    public function value(): mixed
     {
         return "{$this->avgResponseTime()} ms";
     }

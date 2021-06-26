@@ -2,28 +2,19 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
-use Illuminate\Support\Str;
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Sensor as Contract;
 use LaravelEnso\Helpers\Services\Obj;
-use ReflectionClass;
 
-abstract class Sensor implements Contract
+abstract class Sensor extends IdProvider implements Contract
 {
-    private Obj $params;
-
-    public function __construct(Obj $params)
+    public function __construct(private Obj $params)
     {
-        $this->params = $params;
     }
 
-    public function id()
+    public function class(): ?string
     {
-        return Str::camel((new ReflectionClass($this))->getShortName());
-    }
-
-    public function class(): string
-    {
-        return '';
+        return null;
     }
 
     protected function filter($query, $attribute = 'created_at')

@@ -4,7 +4,7 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 class OperatingSystem extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return PHP_OS === 'Linux'
             ? $this->version()
@@ -26,7 +26,7 @@ class OperatingSystem extends Sensor
         return 400;
     }
 
-    private function version()
+    private function version(): string
     {
         $output = shell_exec('lsb_release -a | grep Description');
 

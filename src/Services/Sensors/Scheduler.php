@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 
 class Scheduler extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return 'Scheduler';
     }
@@ -23,7 +23,7 @@ class Scheduler extends Sensor
             : ['fad', 'times-circle'];
     }
 
-    public function class(): string
+    public function class(): ?string
     {
         return Cache::has('scheduler_monitor')
             ? 'has-text-success'

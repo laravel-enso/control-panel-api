@@ -2,6 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Disk;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Load;
 use LaravelEnso\ControlPanelApi\Services\Sensors\LogSize;
@@ -10,13 +11,8 @@ use LaravelEnso\ControlPanelApi\Services\Sensors\RequestMonitor;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Time;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
 
-class Server implements Group
+class Server extends IdProvider implements Group
 {
-    public function id()
-    {
-        return 'server';
-    }
-
     public function label(): string
     {
         return 'Server';

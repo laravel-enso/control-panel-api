@@ -6,7 +6,7 @@ use LaravelEnso\Users\Models\User;
 
 class NewUsers extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return $this->filter(User::query())->count();
     }

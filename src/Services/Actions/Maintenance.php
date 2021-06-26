@@ -4,16 +4,12 @@ namespace LaravelEnso\ControlPanelApi\Services\Actions;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Action;
 
-class Maintenance implements Action
+class Maintenance extends IdProvider implements Action
 {
-    public function id()
-    {
-        return 'maintenance';
-    }
-
-    public function handle()
+    public function handle(): array
     {
         $action = App::isDownForMaintenance() ? 'up' : 'down';
 

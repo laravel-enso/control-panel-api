@@ -2,18 +2,14 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Horizon;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Scheduler;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Web;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
 
-class Services implements Group
+class Services extends IdProvider implements Group
 {
-    public function id()
-    {
-        return 'services';
-    }
-
     public function label(): string
     {
         return 'Services';

@@ -6,7 +6,7 @@ use LaravelEnso\UserGroups\Models\UserGroup;
 
 class UserGroups extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return UserGroup::count();
     }

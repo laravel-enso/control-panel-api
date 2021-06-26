@@ -7,7 +7,7 @@ use Laravel\Horizon\Contracts\JobRepository;
 
 class PendingJobs extends Sensor
 {
-    public function value()
+    public function value(): mixed
     {
         return App::make(JobRepository::class)->getRecent()
             ->filter(fn ($job) => $job->status === 'pending')

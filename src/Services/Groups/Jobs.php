@@ -2,17 +2,13 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
+use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\FailedJobs;
 use LaravelEnso\ControlPanelApi\Services\Sensors\PendingJobs;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
 
-class Jobs implements Group
+class Jobs extends IdProvider implements Group
 {
-    public function id()
-    {
-        return 'jobs';
-    }
-
     public function label(): string
     {
         return 'Jobs';
