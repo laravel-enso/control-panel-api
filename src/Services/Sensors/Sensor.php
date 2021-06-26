@@ -10,11 +10,8 @@ use LaravelEnso\Helpers\Services\Obj;
 
 abstract class Sensor extends IdProvider implements Contract
 {
-    private Obj $params;
-
-    public function __construct(Obj $params)
+    public function __construct(private Obj $params)
     {
-        $this->params = $params;
     }
 
     public function class(): ?string

@@ -4,6 +4,7 @@ namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use Illuminate\Support\Facades\Cache;
 use LaravelEnso\Helpers\Services\Decimals;
+use LaravelEnso\Helpers\Services\Obj;
 
 class RequestMonitor extends Sensor
 {
@@ -11,9 +12,9 @@ class RequestMonitor extends Sensor
 
     private array $hits;
 
-    public function __construct($obj)
+    public function __construct(Obj $params)
     {
-        parent::__construct($obj);
+        parent::__construct($params);
 
         $this->hits = Cache::get(static::RequestMonitor, []);
     }

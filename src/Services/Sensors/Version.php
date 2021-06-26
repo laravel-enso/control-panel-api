@@ -3,14 +3,15 @@
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
 use LaravelEnso\Core\Services\Version as Service;
+use LaravelEnso\Helpers\Services\Obj;
 
 class Version extends Sensor
 {
     private Service $version;
 
-    public function __construct()
+    public function __construct(Obj $params)
     {
-        parent::__construct(...func_get_args());
+        parent::__construct($params);
 
         $this->version = new Service();
     }
