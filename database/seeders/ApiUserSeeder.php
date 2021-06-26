@@ -7,31 +7,37 @@ use Illuminate\Support\Facades\DB;
 use LaravelEnso\People\Models\Person;
 use LaravelEnso\Permissions\Models\Permission;
 use LaravelEnso\Roles\Models\Role;
-use LaravelEnso\UserGroups\Enums\UserGroups;
 use LaravelEnso\UserGroups\Models\UserGroup;
 use LaravelEnso\Users\Models\User;
 
-class ControlPanelApiSeeder extends Seeder
+class ApiUserSeeder extends Seeder
 {
     private const email = 'monitoring@laravel-enso.com';
-    private ?Person $person;
+    private UserGroup $group;
+    private Person $person;
 
     public function run()
     {
-        DB::transaction(function () {
-            $this->user();
-        });
+        DB::transaction(fn () => $this->user());
     }
 
     public function user(): void
     {
         User::factory()->create([
             'person_id' => $this->person()->id,
-            'group_id' => UserGroup::find(UserGroups::Admin)->id,
+            'group_id' => $this->group()->id,
             'email' => $this->person()->email,
             'password' => '!',
             'role_id' => $this->role()->id,
             'is_active' => true,
+        ]);
+    }
+
+    public function group(): UserGroup
+    {
+        return $this->group ??= UserGroup::create([
+            'name' => 'APIs',
+            'description' => 'APIs user group',
         ]);
     }
 
@@ -58,6 +64,8 @@ class ControlPanelApiSeeder extends Seeder
         $role->permissions()->sync(
             Permission::where('name', 'like', 'apis.%')->pluck('id')
         );
+
+        $role->userGroups()->sync([$this->group()->id]);
 
         return $role;
     }

@@ -30,6 +30,6 @@ class Statistics
     public function all()
     {
         return Collection::wrap($this->stats)
-            ->map(fn ($group) => App::make($group));
+            ->map(fn ($stat) => App::make($stat));
     }
 }

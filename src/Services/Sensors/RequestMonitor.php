@@ -11,9 +11,9 @@ class RequestMonitor extends Sensor
 
     private array $hits;
 
-    public function __construct()
+    public function __construct($obj)
     {
-        parent::__construct(...func_get_args());
+        parent::__construct($obj);
 
         $this->hits = Cache::get(static::RequestMonitor, []);
     }

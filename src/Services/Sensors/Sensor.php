@@ -2,14 +2,19 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Sensors;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Builder as DBBuilder;
 use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Sensor as Contract;
 use LaravelEnso\Helpers\Services\Obj;
 
 abstract class Sensor extends IdProvider implements Contract
 {
-    public function __construct(private Obj $params)
+    private Obj $params;
+
+    public function __construct(Obj $params)
     {
+        $this->params = $params;
     }
 
     public function class(): ?string
@@ -17,7 +22,7 @@ abstract class Sensor extends IdProvider implements Contract
         return null;
     }
 
-    protected function filter($query, $attribute = 'created_at')
+    protected function filter(DBBuilder | Builder $query, $attribute = 'created_at'): DBBuilder | Builder
     {
         return $query
             ->when($this->params->filled('startDate'), fn ($query) => $query

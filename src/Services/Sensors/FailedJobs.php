@@ -8,10 +8,9 @@ class FailedJobs extends Sensor
 {
     public function value(): mixed
     {
-        return $this->filter(
-            DB::table('failed_jobs')->selectRaw('id'),
-            'failed_at'
-        )->count();
+        $args = [DB::table('failed_jobs')->selectRaw('id'), 'failed_at'];
+
+        return $this->filter(...$args)->count();
     }
 
     public function tooltip(): string
