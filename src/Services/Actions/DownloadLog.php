@@ -3,8 +3,8 @@
 namespace LaravelEnso\ControlPanelApi\Services\Actions;
 
 use Carbon\Carbon;
-use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\Services\IdProvider;
 
 class DownloadLog extends IdProvider implements Action
 {

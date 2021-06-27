@@ -2,8 +2,8 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Actions;
 
-use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelCommon\Contracts\Action;
+use LaravelEnso\ControlPanelCommon\Services\IdProvider;
 use LaravelEnso\Logs\Services\ClearLog as Service;
 
 class ClearLog extends IdProvider implements Action

@@ -2,11 +2,11 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
-use LaravelEnso\ControlPanelApi\Services\IdProvider;
 use LaravelEnso\ControlPanelApi\Services\Sensors\NewUsers;
 use LaravelEnso\ControlPanelApi\Services\Sensors\UserCount;
 use LaravelEnso\ControlPanelApi\Services\Sensors\UserGroups;
 use LaravelEnso\ControlPanelCommon\Contracts\Group;
+use LaravelEnso\ControlPanelCommon\Services\IdProvider;
 
 class Users extends IdProvider implements Group
 {
