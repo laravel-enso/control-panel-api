@@ -2,7 +2,7 @@
 
 namespace LaravelEnso\ControlPanelApi\Services\Groups;
 
-use LaravelEnso\ControlPanelApi\Services\Sensors\MysqlVersion;
+use LaravelEnso\ControlPanelApi\Services\Sensors\Database;
 use LaravelEnso\ControlPanelApi\Services\Sensors\OperatingSystem;
 use LaravelEnso\ControlPanelApi\Services\Sensors\PhpVersion;
 use LaravelEnso\ControlPanelApi\Services\Sensors\Version;
@@ -20,7 +20,7 @@ class Versions extends IdProvider implements Group
     {
         return [
             Version::class, PhpVersion::class,
-            MysqlVersion::class, OperatingSystem::class,
+            Database::class, OperatingSystem::class,
         ];
     }
 
