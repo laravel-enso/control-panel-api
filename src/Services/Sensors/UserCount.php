@@ -31,8 +31,8 @@ class UserCount extends Sensor
     private function stats()
     {
         return User::query()
-            ->selectRaw('count(case when is_active = 1 then 1 end) as active')
-            ->selectRaw('count(case when is_active = 0 then 1 end) as inactive')
+            ->selectRaw('count(case when is_active = true then 1 end) as active')
+            ->selectRaw('count(case when is_active = false then 1 end) as inactive')
             ->first();
     }
 }
