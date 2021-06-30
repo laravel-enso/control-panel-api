@@ -45,6 +45,6 @@ class RequestMonitor extends Sensor
     {
         return empty($this->hits)
             ? 0
-            : Decimals::div(array_sum($this->hits), count($this->hits));
+            : Decimals::div(array_sum($this->hits), count($this->hits), 0);
     }
 }
