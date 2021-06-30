@@ -8,7 +8,7 @@ use LaravelEnso\Helpers\Services\Obj;
 
 class RequestMonitor extends Sensor
 {
-    public const RequestMonitor = 'control-panel-api:requestMonitor';
+    public const RequestMonitorKey = 'control-panel-api:requestMonitor';
 
     private array $hits;
 
@@ -16,7 +16,7 @@ class RequestMonitor extends Sensor
     {
         parent::__construct($params);
 
-        $this->hits = Cache::get(static::RequestMonitor, []);
+        $this->hits = Cache::get(static::RequestMonitorKey, []);
     }
 
     public function value(): mixed
@@ -26,7 +26,7 @@ class RequestMonitor extends Sensor
 
     public function tooltip(): string
     {
-        $count = count($this->hits);
+        $count = number_format(count($this->hits));
 
         return "average response time for the last {$count} requests";
     }
@@ -43,8 +43,8 @@ class RequestMonitor extends Sensor
 
     private function avgResponseTime(): string
     {
-        return ! empty($this->hits)
-            ? Decimals::div(array_sum($this->hits), count($this->hits))
-            : 0;
+        return empty($this->hits)
+            ? 0
+            : Decimals::div(array_sum($this->hits), count($this->hits));
     }
 }

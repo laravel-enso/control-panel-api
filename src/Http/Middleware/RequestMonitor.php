@@ -2,15 +2,13 @@
 
 namespace LaravelEnso\ControlPanelApi\Http\Middleware;
 
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Support\Facades\Cache;
 use LaravelEnso\ControlPanelApi\Services\Sensors\RequestMonitor as Sensor;
 
 class RequestMonitor
 {
-    private const RequestLimit = 2000;
-    private const CacheLifetime = 2000;
+    private const RequestLimit = 10000;
 
     public function handle($request, Closure $next)
     {
@@ -21,14 +19,15 @@ class RequestMonitor
     {
         $time = microtime(true) - LARAVEL_START;
 
-        $hits = Cache::get(Sensor::RequestMonitor, []);
+        $hits = Cache::get(Sensor::RequestMonitorKey, []);
 
-        $hits = array_slice($hits, -self::RequestLimit);
+        if (count($hits) === self::RequestLimit) {
+            array_shift($hits);
+        }
 
         $hits[] = $time * 1000;
-        $duration = Carbon::now()->addHours(self::CacheLifetime);
 
-        Cache::put(Sensor::RequestMonitor, $hits, $duration);
+        Cache::forever(Sensor::RequestMonitorKey, $hits);
 
         return $response;
     }
