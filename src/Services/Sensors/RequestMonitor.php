@@ -8,7 +8,7 @@ use LaravelEnso\Helpers\Services\Obj;
 
 class RequestMonitor extends Sensor
 {
-    public const RequestMonitorKey = 'control-panel-api:requestMonitor';
+    public const RequestMonitorKey = 'control-panel-api:request-monitor';
 
     private array $hits;
 
