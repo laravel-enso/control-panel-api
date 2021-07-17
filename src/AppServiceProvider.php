@@ -4,14 +4,10 @@ namespace LaravelEnso\ControlPanelApi;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
-use LaravelEnso\Api\Http\Middleware\ApiLogger;
 use LaravelEnso\ControlPanelApi\Commands\Monitor;
 use LaravelEnso\ControlPanelApi\Http\Middleware\RequestMonitor;
 use LaravelEnso\ControlPanelApi\Services\Actions;
 use LaravelEnso\ControlPanelApi\Services\Statistics;
-use LaravelEnso\Core\Http\Middleware\VerifyActiveState;
-use LaravelEnso\Localisation\Http\Middleware\SetLanguage;
-use LaravelEnso\Permissions\Http\Middleware\VerifyRouteAccess;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,13 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app['router']
             ->aliasMiddleware('request-monitor', RequestMonitor::class);
-
-        $this->app['router']->middlewareGroup('control-panel-api', [
-            VerifyActiveState::class,
-            ApiLogger::class,
-            VerifyRouteAccess::class,
-            SetLanguage::class,
-        ]);
     }
 
     private function command(): self

@@ -9,7 +9,7 @@ use LaravelEnso\ControlPanelApi\Http\Controllers\Statistics;
 Route::name('apis.controlPanel.')
     ->prefix('apis/controlPanel')
     ->group(function () {
-        Route::middleware(['api', 'auth:sanctum', 'control-panel-api'])
+        Route::middleware(['api', 'auth:sanctum', 'core-api'])
             ->group(function () {
                 Route::get('statistics', Statistics::class)->name('statistics');
                 Route::get('actions', Actions::class)->name('actions');
