@@ -18,7 +18,7 @@ class Version extends Sensor
 
     public function class(): ?string
     {
-        return $this->version->isOutdated() ? 'is-danger' : '';
+        return $this->version->isOutdated() ? 'has-text-danger' : '';
     }
 
     public function value(): mixed
