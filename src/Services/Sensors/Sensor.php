@@ -19,7 +19,7 @@ abstract class Sensor extends IdProvider implements Contract
         return null;
     }
 
-    protected function filter(DBBuilder | Builder $query, $attribute = 'created_at'): DBBuilder | Builder
+    protected function filter(DBBuilder|Builder $query, $attribute = 'created_at'): DBBuilder|Builder
     {
         return $query
             ->when($this->params->filled('startDate'), fn ($query) => $query
