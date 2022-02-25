@@ -25,11 +25,11 @@
     ],
     "require": {
         "laravel-enso/api": "^1.2",
-        "laravel-enso/core": "^7.0",
+        "laravel-enso/core": "^8.0",
         "laravel-enso/enums": "^2.0",
         "laravel-enso/helpers": "^2.0",
         "laravel-enso/logs": "^4.0",
-        "laravel-enso/action-logger": "^3.0",
+        "laravel-enso/action-logger": "^3.1",
         "laravel-enso/control-panel-common": "^2.0"
     },
     "autoload": {
