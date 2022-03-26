@@ -61,10 +61,8 @@ class ApiUserSeeder extends Seeder
             'description' => 'Monitoring role.',
         ]);
 
-        $role->permissions()->sync(
-            Permission::where('name', 'like', 'apis.%')->pluck('id')
-        );
-
+        $permissions = Permission::where('name', 'like', 'apis.%')->pluck('id');
+        $role->syncPermissions($permissions->toArray());
         $role->userGroups()->sync([$this->group()->id]);
 
         return $role;
