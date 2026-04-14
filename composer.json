@@ -26,7 +26,7 @@
     "require": {
         "laravel-enso/api": "^1.2",
         "laravel-enso/core": "^12.0",
-        "laravel-enso/helpers": "^3.0",
+        "laravel-enso/helpers": "^4.0",
         "laravel-enso/logs": "^4.0",
         "laravel-enso/action-logger": "^3.1",
         "laravel-enso/control-panel-common": "^2.0"
